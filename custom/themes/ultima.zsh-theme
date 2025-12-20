@@ -1,0 +1,1 @@
+ultima-shell/ultima.zsh-theme
