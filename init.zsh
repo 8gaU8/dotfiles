@@ -14,11 +14,11 @@ export ZSH_CUSTOM="$HOME/zsh-dotfiles/custom"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 
 plugins=(
-    git
+    # git
     #python
-    # zsh-autosuggestions
+    zsh-autosuggestions
     zsh-syntax-highlighting
-    docker
+    # docker
 )
 
 export LOGGER_LEVEL=4
@@ -39,7 +39,7 @@ export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46
 # autoload -Uz compinit
 # ZSH_COMPDUMP=~/.cache/zsh/.zcompdump-${ZSH_VERSION}
 # compinit -d $ZSH_COMPDUMP
-autoload -U compinit && compinit -i
+# autoload -U compinit && compinit -i
 
 source $ZSH/oh-my-zsh.sh
 
