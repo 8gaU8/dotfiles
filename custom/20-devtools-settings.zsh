@@ -28,7 +28,7 @@ else
 fi
 
 ## ghcup
-source ${HOME}/.ghcup/env
+source_if_exists ${HOME}/.ghcup/env
 
 #* === Completions ===
 
