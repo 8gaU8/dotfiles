@@ -11,6 +11,8 @@ add_to_path_if_exists "${HOME}/.local/bin"
 add_to_path_if_exists "${HOME}/.lmstudio/bin"
 ## Antigravity
 add_to_path_if_exists "${HOME}/.antigravity/antigravity/bin"
+## Rust
+add_to_path_if_exists "${HOME}/.cargo/bin"
 
 
 
@@ -40,6 +42,9 @@ fi
 
 ## ghcup
 source_if_exists ${HOME}/.ghcup/env
+
+## rust
+source_if_exists ${HOME}/.cargo/env
 
 #* === Completions ===
 
