@@ -7,3 +7,6 @@
 [submodule "custom/themes/ultima-shell"]
 	path = custom/themes/ultima-shell
 	url = https://github.com/egorlem/ultima.zsh-theme
+[submodule "oh-my-zsh"]
+	path = oh-my-zsh
+	url = https://github.com/ohmyzsh/ohmyzsh.git
