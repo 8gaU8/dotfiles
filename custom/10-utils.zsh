@@ -98,19 +98,21 @@
     }
 
     cached_completion(){
-        # usage: cached_completion <command> <completion generation command...>
-        # example: cached_completion uv generate-shell-completion zsh
+        # usage: cached_completion <filename> <command> <completion generation command...>
+        # example: cached_completion _uv uv generate-shell-completion zsh
         local filename="${1}"
-        local base_cmd="${2}"
-        local commands="(${@[2,-1]})"
+        shift
+        local base_cmd="${1}"
+        shift
+        local commands="$*"
         local cache_file="${COMPLETION_CACHE_DIR}/${filename}"
 
         _cached_eval "${cache_file}" "${base_cmd}" "${commands}" "completion"
     }
 
     cached_activation(){
-        # usage: cached_activation <command> <completion generation command...>
-        # example: cached_activation uv generate-shell-completion zsh
+        # usage: cached_activation <command> <activation generation command...>
+        # example: cached_activation fzf --zsh
         local base_cmd="$(basename ${1})"
         local commands="${*}"
         local cache_file="${ACTIVATE_CACHE_DIR:-${HOME}/.cache/zsh_activate}/${base_cmd}"
