@@ -111,11 +111,12 @@
     }
 
     cached_activation(){
-        # usage: cached_activation <command> <activation generation command...>
-        # example: cached_activation /opt/homebrew/bin/brew shellenv
-        local base_cmd="$(basename "${1}")"
-        local commands="$*"
-        local cache_file="${ACTIVATE_CACHE_DIR:-${HOME}/.cache/zsh_activate}/${base_cmd}"
+        # usage: cached_completion <command> <completion generation command...>
+        # example: cached_completion uv generate-shell-completion zsh
+        local filename="${1}"
+        local base_cmd="${2}"
+        local commands="(${@[2,-1]})"
+        local cache_file="${ACTIVATE_CACHE_DIR}/${filename}"
 
         if _cached_eval "${cache_file}" "${base_cmd}" "${commands}" "activation"; then
             info "Sourcing activation cache for command: ${base_cmd}"
