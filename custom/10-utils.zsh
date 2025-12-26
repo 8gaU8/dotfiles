@@ -58,9 +58,43 @@
         fi
     }
 
-    cached_completion_init(){
-        local cache_dir="${COMPLETION_CACHE_DIR}"
+    # Generic cache initialization function
+    _cache_init(){
+        local cache_dir="${1}"
         [[ ! -d "${cache_dir}" ]] && mkdir -p "${cache_dir}"
+    }
+
+    cached_completion_init(){
+        _cache_init "${COMPLETION_CACHE_DIR}"
+    }
+
+    cached_activation_init(){
+        _cache_init "${ACTIVATE_CACHE_DIR:-${HOME}/.cache/zsh_activate}"
+    }
+
+    # Generic function to handle cached command evaluation
+    # Returns 0 if successful, 1 if command not found
+    _cached_eval(){
+        local cache_file="${1}"
+        local base_cmd="${2}"
+        local commands="${3}"
+        local cache_type="${4}"  # "completion" or "activation"
+
+        # check command existence
+        if ! command -v ${base_cmd} &> /dev/null; then
+          warn "${base_cmd} command not found, skipping ${base_cmd} ${cache_type} setup."
+          return 1
+        fi
+
+        if is_file_recent "${cache_file}" "${MAX_CACHE_AGE_SECONDS}"; then
+            info "Using cached ${cache_type} for command: ${base_cmd}"
+        else
+            # キャッシュが存在しないか、古い場合は新たに生成
+            info "Generating ${cache_type} cache for command: ${base_cmd}"
+            eval "${commands}" >| "${cache_file}"
+        fi
+
+        return 0
     }
 
     cached_completion(){
@@ -71,52 +105,20 @@
         local commands="(${@[2,-1]})"
         local cache_file="${COMPLETION_CACHE_DIR}/${filename}"
 
-        # check command existence
-        if ! command -v ${base_cmd} &> /dev/null; then
-          warn "${base_cmd} command not found, skipping ${base_cmd} autocompletion setup."
-          return 1
-        fi
-
-        if is_file_recent "${cache_file}" "${MAX_CACHE_AGE_SECONDS}"; then
-            info "Using cached completion for command: ${base_cmd}"
-        else
-            # キャッシュが存在しないか、古い場合は新たに生成
-            info "Generating completion cache for command: ${base_cmd}"
-            eval "${commands}" >| "${cache_file}"
-        fi
-
-    }
-
-    cached_activation_init(){
-        local cache_dir="${ACTIVATE_CACHE_DIR:-${HOME}/.cache/zsh_activate}"
-        [[ ! -d "${cache_dir}" ]] && mkdir -p "${cache_dir}"
+        _cached_eval "${cache_file}" "${base_cmd}" "${commands}" "completion"
     }
 
     cached_activation(){
-        # usage: cached_completion <command> <completion generation command...>
-        # example: cached_completion uv generate-shell-completion zsh
+        # usage: cached_activation <command> <completion generation command...>
+        # example: cached_activation uv generate-shell-completion zsh
         local base_cmd="$(basename ${1})"
         local commands="${*}"
         local cache_file="${ACTIVATE_CACHE_DIR:-${HOME}/.cache/zsh_activate}/${base_cmd}"
 
-        # check command existence
-        if ! command -v ${base_cmd} &> /dev/null; then
-          warn "${base_cmd} command not found, skipping ${base_cmd} activation setup."
-          return 1
+        if _cached_eval "${cache_file}" "${base_cmd}" "${commands}" "activation"; then
+            info "Sourcing activation cache for command: ${base_cmd}"
+            source "${cache_file}"
         fi
-
-        # Check if cache file exists and is recent (within 1 day)
-        if is_file_recent "${cache_file}" "${MAX_CACHE_AGE_SECONDS}"; then
-            info "Using cached activation for command: ${base_cmd}"
-        else
-            # キャッシュが存在しないか、古い場合は新たに生成
-            info "Generating activation cache for command: ${base_cmd}"
-            eval "${commands}" >| "${cache_file}"
-        fi
-
-        info "Sourcing activation cache for command: ${base_cmd}"
-        source "${cache_file}"
-
     }
 
 
