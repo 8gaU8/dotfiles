@@ -37,9 +37,11 @@ use = ["etc/shell-logger"]
 [plugins.ultima]
 github = "egorlem/ultima.zsh-theme"
 use = ["ultima.zsh-theme"]
-# apply = ["source"]
 
 [plugins.custom-plugins]
 local = "~/zsh-dotfiles/custom/"
 use = ["*.zsh"]
-# apply = ["source"]
+
+[plugins.brew]
+github = "ohmyzsh/ohmyzsh"
+use = ["plugins/brew/brew.plugin.zsh"]
