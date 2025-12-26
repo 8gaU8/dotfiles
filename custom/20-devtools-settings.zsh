@@ -1,4 +1,5 @@
-# source "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/10-utils.zsh"
+#* === initialize ===
+cached_completion_init
 
 #* === update path ===
 
