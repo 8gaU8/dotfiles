@@ -47,8 +47,8 @@
             return 1
         fi
 
-        local file_mod_time=$(stat -f %m "$file")
-        local current_time=$(date +%s)
+        local file_mod_time=$(date -r "$file" '+%s')
+        local current_time=$(date '+%s')
         local age=$((current_time - file_mod_time))
 
         if (( age <= max_age_seconds )); then
