@@ -1,20 +1,3 @@
-# check if shell-logger is available
-(
-  shell_logger_path="$HOME/.local/usr/shell-logger"
-  if [[ -z $shell_logger_path || ! -d $shell_logger_path ]]; then
-    echo "\033[0;31m[shell-logger] shell-logger is not installed in $shell_logger_path.\033[0m"
-    echo "\033[0;31m[shell-logger] Please install shell-logger to enable logging features.\033[0m"
-
-    read -q "REPLY?[oh-my-zsh custom] Do you want to clone the latest shell-logger? (y/N) "
-    if [[ "$REPLY" =~ ^[Yy]$ ]]; then
-      echo "\033[0;33m[oh-my-zsh custom] Cloning the latest shell-logger...\033[0m"
-      git clone https://github.com/rcmdnk/shell-logger.git "$shell_logger_path"
-    else
-      echo "\033[0;33m[oh-my-zsh custom] Skipped. Please clone shell logger at ${shell_logger_path} later.\033[0m"
-    fi
-  fi
-)
-
 # check this repository if it's the latest version
 update_zsh_custom() {
   (

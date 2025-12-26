@@ -17,3 +17,11 @@ echo "source ~/zsh-dotfiles/zshrc" > ~/.zshrc
 cd $HOME/zsh-dotfiles/custom/themes && ln -s ultima-shell/ultima.zsh-theme ultima.zsh-theme
 
 ```
+
+## TODO
+
+- Mise が先か Sheldon が先か問題
+- Sheldon は mise:cargo でインストールしている
+- mise をアクティベーションしないと sheldon は使えない
+- しかし mise のアクティベーションは sheldon のプラグインとして行っている
+- 現状は.zprofileでmiseをアクティベーションしてからzshを起動することで回避している

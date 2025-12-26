@@ -1,16 +1,16 @@
-# Path to your Oh My Zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+#! /bin/zsh
 
-# Path to Customization
-export ZSH_CUSTOM="$HOME/zsh-dotfiles/custom"
+# Activate mise 
+eval "$(${HOME}/.local/bin/mise activate zsh)"
 
-plugins=(
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-)
-
-ZSH_THEME="ultima"
+# Setup cache directories for completions and activations
 export COMPLETION_CACHE_DIR="${HOME}/.cache/zsh_completions"
-fpath+=("${COMPLETION_CACHE_DIR}")
+export ACTIVATE_CACHE_DIR="${HOME}/.cache/zsh_activations"
+export MAX_CACHE_AGE_SECONDS=86400  # 1 day
 
-source $ZSH/oh-my-zsh.sh
+
+fpath+="${COMPLETION_CACHE_DIR}"
+
+# Setup Sheldon
+export SHELDON_CONFIG_DIR="$(dirname $0)/sheldon"
+eval "$(sheldon source)"
