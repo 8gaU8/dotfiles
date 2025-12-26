@@ -54,6 +54,7 @@ cached_completion uv generate-shell-completion zsh
 cached_completion gh completion -s zsh
 cached_completion mise completion zsh
 cached_completion pnpm completion zsh
+cached_completion sheldon completions --shell zsh
 
 #* === Environment Variables ===
 
