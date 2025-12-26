@@ -1,16 +1,21 @@
-# Path to your Oh My Zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+
+export COMPLETION_CACHE_DIR="${HOME}/.cache/zsh_completions"
 
 # Path to Customization
 export ZSH_CUSTOM="$HOME/zsh-dotfiles/custom"
 
-plugins=(
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-)
+export SHELDON_CONFIG_DIR="$(dirname $1)/sheldon"
 
-ZSH_THEME="ultima"
-export COMPLETION_CACHE_DIR="${HOME}/.cache/zsh_completions"
-fpath+=("${COMPLETION_CACHE_DIR}")
+# import customs
+for config_file in $ZSH_CUSTOM/*.zsh; do
+  [ -f "$config_file" ] && source "$config_file"
+done
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH_CUSTOM/themes/ultima.zsh-theme
+
+
+fpath=("${COMPLETION_CACHE_DIR}" $fpath)
+
+# autoload -Uz compinit && compinit
+
+eval "$(sheldon source)"
