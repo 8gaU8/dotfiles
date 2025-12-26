@@ -39,7 +39,7 @@ github = "egorlem/ultima.zsh-theme"
 use = ["ultima.zsh-theme"]
 
 [plugins.custom-plugins]
-local = "~/zsh-dotfiles/custom/"
+local = "~/dotfiles/custom/"
 use = ["*.zsh"]
 
 [plugins.brew]
