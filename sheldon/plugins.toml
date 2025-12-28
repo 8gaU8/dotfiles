@@ -30,6 +30,10 @@ github = "zsh-users/zsh-syntax-highlighting"
 use = ["{{ name }}.zsh"]
 apply = ["defer"]
 
+[plugins.yous-should-use]
+github = "MichaelAquilina/zsh-you-should-use"
+use = ["you-should-use.plugin.zsh"]
+
 [plugins.shell-logger]
 github = "rcmdnk/shell-logger"
 use = ["etc/shell-logger"]
