@@ -1,3 +1,8 @@
+[hooks.enter]
+description = "Init script"
+shell = "zsh"
+script = 'eval "$(taplo completions zsh)" && echo "completions activated"'
+
 [tasks.fmt]
 description = "Format TOML files"
 run = "taplo format"
@@ -7,4 +12,8 @@ description = "Clean cache files"
 run = "rm -rf ~/.cache/zsh_* */**.zwc ./*.zwc"
 
 [tools]
+shfmt = "latest"
 taplo = "latest"
+
+[settings]
+experimental = true
