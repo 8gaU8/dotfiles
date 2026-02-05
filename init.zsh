@@ -8,7 +8,6 @@ export MAX_CACHE_AGE_SECONDS=86400 # 1 day
 export DOTFILES_DIR="$(dirname $0)"
 export BASE_CONFIG_DIR="$(dirname $0)/config"
 
-export MISE_GLOBAL_CONFIG_FILE="${BASE_CONFIG_DIR}/mise.global.toml"
 export STARSHIP_CONFIG="${BASE_CONFIG_DIR}/starship.toml"
 export SHELDON_CONFIG_FILE="${BASE_CONFIG_DIR}/sheldon-plugins.toml"
 
