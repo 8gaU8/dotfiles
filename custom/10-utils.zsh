@@ -1,8 +1,37 @@
 #! /usr/bin/env zsh
-# example
-# $ add_to_path_if_exists "/usr/local/bin"
-# ディレクトリが存在する場合のみPATHに追加し、存在しない場合は警告を出す関数
+
+update_zsh_custom() {
+    # check this repository if it's the latest version
+	(
+		cd "$DOTFILES_DIR"
+		echo "Checking for updates in ${DOTFILES_DIR}..."
+		if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+			# Not a git repository, nothing to do.
+			exit
+		fi
+
+		# # Fetch remote updates quietly
+		git fetch --quiet
+
+		# # Check if the local branch is behind the remote
+		if git status -uno | grep -q 'Your branch is behind'; then
+			echo "\033[0;33m[oh-my-zsh custom] Your custom scripts are not up to date.\033[0m"
+			read -q "REPLY?[oh-my-zsh custom] Do you want to pull the latest changes? (y/N) "
+			echo
+			if [[ "$REPLY" =~ ^[Yy]$ ]]; then
+				echo "\033[0;33m[oh-my-zsh custom] Pulling latest changes...\033[0m"
+				git pull
+			else
+				echo "\033[0;33m[oh-my-zsh custom] Skipped. Please run 'git pull' in ~/.oh-my-zsh/custom later.\033[0m"
+			fi
+		fi
+	)
+}
+
 add_to_path_if_exists() {
+    # example
+    # $ add_to_path_if_exists "/usr/local/bin"
+    # ディレクトリが存在する場合のみPATHに追加し、存在しない場合は警告を出す関数
     local dir="$1"
     
     if [[ -z "$dir" ]]; then
@@ -20,104 +49,21 @@ add_to_path_if_exists() {
     fi
 }
 
-source_if_exists() {
-    local file="$1"
-    
-    if [[ -z "$file" ]]; then
-        error "Directory argument is required."
-        return 1
+on_demand_completion() {
+  local cmd_name=$1
+  local completion_command=$2
+  local function_name="_${cmd_name}"
+  local comp_cmd_name="${completion_command%% *}"
+
+  eval "function $function_name() {
+    if ! command -v "$comp_cmd_name" &> /dev/null; then
+      return
     fi
+    unfunction '$function_name'
+    eval \"\$(eval $completion_command)\"
+    \$_comps[$cmd_name]
+  }"
 
-    if [[ -f "$file" ]]; then
-        source "$file"
-    else
-        warn "File not found. Skipping sourcing it: $file" 
-        return 1
-    fi
+  compdef $function_name $cmd_name
 }
-
-is_file_recent() {
-    local file="$1"
-    local max_age_seconds="$2"
-
-    if [[ ! -f "$file" ]]; then
-        return 1
-    fi
-
-    local file_mod_time=$(date -r "$file" '+%s')
-    local current_time=$(date '+%s')
-    local age=$((current_time - file_mod_time))
-
-    if (( age <= max_age_seconds )); then
-        return 0
-    else
-        return 1
-    fi
-}
-
-# Generic cache initialization function
-_cache_init(){
-    local cache_dir="${1}"
-    [[ ! -d "${cache_dir}" ]] && mkdir -p "${cache_dir}"
-}
-
-cached_completion_init(){
-    _cache_init "${COMPLETION_CACHE_DIR:-${HOME}/.cache/zsh_completions}"
-}
-
-cached_activation_init(){
-    _cache_init "${ACTIVATE_CACHE_DIR:-${HOME}/.cache/zsh_activate}"
-}
-
-# Generic function to handle cached command evaluation
-# Returns 0 if successful, 1 if command not found
-_cached_eval(){
-    local cache_file="${1}"
-    local base_cmd="${2}"
-    local commands="${3}"
-    local cache_type="${4}"  # "completion" or "activation"
-
-    # check command existence
-    if ! command -v "${base_cmd}" &> /dev/null; then
-        warn "${base_cmd} command not found, skipping ${base_cmd} ${cache_type} setup."
-        return 1
-    fi
-
-    if is_file_recent "${cache_file}" "${MAX_CACHE_AGE_SECONDS}"; then
-        info "Using cached ${cache_type} for command: ${base_cmd}" at "${cache_file}"
-    else
-        # キャッシュが存在しないか、古い場合は新たに生成
-        info "Generating ${cache_type} cache for command: ${base_cmd}" at "${cache_file}"
-        eval "${commands}" >| "${cache_file}"
-    fi
-
-    return 0
-}
-
-cached_completion(){
-    # usage: cached_completion <filename> <command> <completion generation command...>
-    # example: cached_completion _tailscale tailscale completion zsh
-    local filename="${1}"
-    local base_cmd="${2}"
-    local commands="(${@[2,-1]})"
-    local cache_file="${COMPLETION_CACHE_DIR}/${filename}"
-
-    _cached_eval "${cache_file}" "${base_cmd}" "${commands}" "completion"
-}
-
-cached_activation(){
-    # usage: cached_activation <filename> <command> <activation command...>
-    # example: cached_activation _brew /opt/homebrew/bin/brew shellenv
-    local filename="${1}"
-    local base_cmd="${2}"
-    local commands="(${@[2,-1]})"
-    local cache_file="${ACTIVATE_CACHE_DIR}/${filename}"
-
-    if _cached_eval "${cache_file}" "${base_cmd}" "${commands}" "activation"; then
-        info "Sourcing activation cache for command: ${base_cmd}"
-        source "${cache_file}"
-    fi
-}
-
-
 

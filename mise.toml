@@ -4,12 +4,14 @@ run = "taplo format"
 
 [tasks.clean]
 description = "Clean cache files"
-run = "rm -rf ~/.cache/zsh_* */**.zwc ./*.zwc"
+run = "rm -rf ~/.cache/zsh_* */**.zwc ./*.zwc ~/.zsh-evalcache ./custom.bundle.zsh"
+
+[tasks.reinstall]
+description = "Clean and reinstall all dependencies"
+depends = "clean"
+run = "sheldon lock --reinstall"
 
 [tools]
 shellcheck = "latest"
 shfmt = "latest"
 taplo = "latest"
-
-[settings]
-experimental = true

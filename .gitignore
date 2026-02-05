@@ -1,3 +1,6 @@
+# bundled
+custom.bundle.zsh
+
 # Zsh compiled files
 *.zwc
 

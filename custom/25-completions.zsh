@@ -1,19 +1,13 @@
 #! /usr/bin/env zsh
 
-#* === initialize ===
-export COMPLETION_CACHE_DIR="${HOME}/.cache/zsh_completions"
-fpath+="${COMPLETION_CACHE_DIR}"
 
-cached_completion_init
-
-#* === Completions ===
-cached_completion _tailscale tailscale completion zsh
-cached_completion _uv uv generate-shell-completion zsh
-cached_completion _uvx uvx --generate-shell-completion=zsh
-cached_completion _gh gh completion -s zsh
-cached_completion _mise mise completion zsh
-cached_completion _pnpm pnpm completion zsh
-cached_completion _sheldon sheldon completions --shell zsh
-cached_completion _rustup rustup completions zsh rustup
-cached_completion _cargo rustup completions zsh cargo
-cached_completion _starship starship completions zsh
+on_demand_completion "tailscale" "tailscale completion zsh"
+on_demand_completion "uv" "uv generate-shell-completion zsh"
+on_demand_completion "uvx" "uvx --generate-shell-completion=zsh"
+on_demand_completion "gh" "gh completion -s zsh"
+on_demand_completion "mise" "mise completion zsh"
+on_demand_completion "pnpm" "pnpm completion zsh"
+on_demand_completion "sheldon" "sheldon completions --shell zsh"
+on_demand_completion "rustup" "rustup completions zsh rustup"
+on_demand_completion "cargo" "rustup completions zsh cargo"
+on_demand_completion "starship" "starship completions zsh"
