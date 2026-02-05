@@ -2,10 +2,7 @@
 act = "latest"
 aqua = "latest"
 bat = "latest"
-"cargo:cargo-machete" = "latest"
 "cargo:sheldon" = "latest"
-"cargo:tex-fmt" = "latest"
-deno = "latest"
 eza = "latest"
 fzf = "latest"
 gemini-cli = "latest"
@@ -19,7 +16,6 @@ rust = "latest"
 starship = "latest"
 usage = "latest"
 uv = "latest"
-watchexec = "latest"
 zoxide = "latest"
 
 [settings]
