@@ -1,7 +1,7 @@
 #! /usr/bin/env zsh
 
 update_zsh_custom() {
-    # check this repository if it's the latest version
+	# check this repository if it's the latest version
 	(
 		cd "$DOTFILES_DIR"
 		echo "Checking for updates in ${DOTFILES_DIR}..."
@@ -29,33 +29,33 @@ update_zsh_custom() {
 }
 
 add_to_path_if_exists() {
-    # example
-    # $ add_to_path_if_exists "/usr/local/bin"
-    # ディレクトリが存在する場合のみPATHに追加し、存在しない場合は警告を出す関数
-    local dir="$1"
-    
-    if [[ -z "$dir" ]]; then
-        error "add_to_path_if_exists: Directory argument is required."
-        return 1
-    fi
+	# example
+	# $ add_to_path_if_exists "/usr/local/bin"
+	# ディレクトリが存在する場合のみPATHに追加し、存在しない場合は警告を出す関数
+	local dir="$1"
 
-    if [[ -d "$dir" ]]; then
-        # PATHの先頭に追加
-        path=("$dir" $path)
-        export PATH
-    else
-        warn "Directory not found. Skipping addition to PATH: $dir"
-        return 1
-    fi
+	if [[ -z "$dir" ]]; then
+		error "add_to_path_if_exists: Directory argument is required."
+		return 1
+	fi
+
+	if [[ -d "$dir" ]]; then
+		# PATHの先頭に追加
+		path=("$dir" $path)
+		export PATH
+	else
+		warn "Directory not found. Skipping addition to PATH: $dir"
+		return 1
+	fi
 }
 
 on_demand_completion() {
-  local cmd_name=$1
-  local completion_command=$2
-  local function_name="_${cmd_name}"
-  local comp_cmd_name="${completion_command%% *}"
+	local cmd_name=$1
+	local completion_command=$2
+	local function_name="_${cmd_name}"
+	local comp_cmd_name="${completion_command%% *}"
 
-  eval "function $function_name() {
+	eval "function $function_name() {
     if ! command -v "$comp_cmd_name" &> /dev/null; then
       return
     fi
@@ -64,6 +64,5 @@ on_demand_completion() {
     \$_comps[$cmd_name]
   }"
 
-  compdef $function_name $cmd_name
+	compdef $function_name $cmd_name
 }
-
