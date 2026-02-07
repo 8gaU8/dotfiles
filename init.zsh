@@ -12,10 +12,10 @@ export STARSHIP_CONFIG="${BASE_CONFIG_DIR}/starship.toml"
 export SHELDON_CONFIG_FILE="${BASE_CONFIG_DIR}/sheldon-plugins.toml"
 
 # Activate mise 
-if (( ${+VSCODE_INJECTION} )); then
-	eval "$(${HOME}/.local/bin/mise activate zsh --shims)"
-else
+if [ -z "${VSCODE_INJECTION}" ]; then
 	eval "$(${HOME}/.local/bin/mise activate zsh )"
+else
+	eval "$(${HOME}/.local/bin/mise activate zsh --shims)"
 fi 
 
 # ENV var for sheldon
