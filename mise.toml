@@ -1,6 +1,6 @@
-[tasks.fmt]
+[tasks.format]
 description = "Format TOML & ZSH files"
-run = "taplo format && shfmt -w ./*.zsh ./custom/*.zsh"
+run = "taplo format; shfmt -l -w zshrc ./init.zsh ./custom/*.zsh"
 
 [tasks.clean]
 description = "Clean cache files"
