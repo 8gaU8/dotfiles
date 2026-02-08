@@ -1,5 +1,3 @@
-#! /usr/bin/env zsh
-
 #* === Environment Variables ===
 
 # pip: Avoid pip installation without venv
