@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dotfiles-dev
+    volumes:
+      # Mount the dotfiles directory for development
+      - .:/root/dotfiles
+      # Persist mise installations
+      - mise-cache:/root/.local/share/mise
+      # Persist zsh cache
+      - zsh-cache:/root/.cache
+    working_dir: /root/dotfiles
+    stdin_open: true
+    tty: true
+    environment:
+      # Optional: Set GITHUB_TOKEN to avoid rate limits
+      # GITHUB_TOKEN: ${GITHUB_TOKEN}
+      - TERM=xterm-256color
+
+volumes:
+  mise-cache:
+  zsh-cache:
