@@ -16,8 +16,8 @@ RUN apt-get update && apt-get install -y \
 
 # Install mise-en-place
 # We'll download a specific version directly
-RUN MISE_VERSION="2024.12.17" && \
-    wget -q "https://github.com/jdx/mise/releases/download/v${MISE_VERSION}/mise-v${MISE_VERSION}-linux-x64" -O /usr/local/bin/mise && \
+ARG MISE_VERSION=2024.12.17
+RUN wget -q "https://github.com/jdx/mise/releases/download/v${MISE_VERSION}/mise-v${MISE_VERSION}-linux-x64" -O /usr/local/bin/mise && \
     chmod +x /usr/local/bin/mise
 
 # Set up mise in PATH

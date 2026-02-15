@@ -10,8 +10,8 @@ Use Docker to quickly set up a development environment with all dependencies pre
 
 ```bash
 # Clone this repository
-git clone https://github.com/8gaU8/dotfiles/ ~/dotfiles
-cd ~/dotfiles
+git clone https://github.com/8gaU8/dotfiles/
+cd dotfiles
 
 # Start the development environment
 docker compose up -d
