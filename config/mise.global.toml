@@ -7,6 +7,8 @@ eza = "latest"
 fzf = "latest"
 gemini-cli = "latest"
 gh = "latest"
+"github:8gaU8/try-go" = { version = "latest", asset_pattern = "try" }
+go = "latest"
 lazyssh = "latest"
 node = "24.13.0"
 pipx = "latest"
