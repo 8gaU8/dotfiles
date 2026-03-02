@@ -12,6 +12,10 @@ depends = "clean"
 run = "sheldon lock --reinstall"
 
 [tools]
+"cargo:sheldon" = "latest"
+"github:8gaU8/try-go" = { version = "latest", asset_pattern = "try" }
+"cargo:starship" = "latest"
+# Dev tools
 shellcheck = "latest"
 shfmt = "latest"
 taplo = "latest"
