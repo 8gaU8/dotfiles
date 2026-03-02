@@ -1,9 +1,9 @@
 [tools]
 act = "latest"
 aqua = "latest"
-bat = "latest"
+"cargo:bat" = "latest"
+"cargo:eza" = "latest"
 "cargo:sheldon" = "latest"
-eza = "latest"
 fzf = "latest"
 gemini-cli = "latest"
 gh = "latest"
@@ -15,10 +15,10 @@ pipx = "latest"
 pnpm = "latest"
 python = "latest"
 rust = "latest"
-starship = "latest"
+"cargo:starship" = "latest"
 usage = "latest"
 uv = "latest"
-zoxide = "latest"
+"cargo:zoxide" = "latest"
 
 [settings]
 activate_aggressive = true
