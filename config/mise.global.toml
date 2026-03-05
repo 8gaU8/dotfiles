@@ -5,6 +5,7 @@ pnpm = "latest"
 rust = "latest"
 usage = "latest"
 uv = "latest"
+zoxide = "latest"
 
 [settings]
 activate_aggressive = true

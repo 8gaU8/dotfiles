@@ -18,7 +18,6 @@ fzf = "latest"
 "github:rossmacarthur/sheldon" = "latest"
 eza = "latest"
 bat = "latest"
-zoxide = "latest"
 
 # Dev tools
 shellcheck = "latest"
