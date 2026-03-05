@@ -1,14 +1,14 @@
 #! /usr/bin/env zsh
 
-alias cat="bat"
+alias cat="$(which bat)"
 alias o="/usr/bin/open"
 alias c="code ."
 alias pbc="/usr/bin/pbcopy"
 alias pbp="/usr/bin/pbpaste"
-alias ls="eza"
-alias ll="eza --icons -al --group-directories-first"
-alias la="eza -aG"
-alias l="eza"
+alias ls="$(which eza)"
+alias ll="ls --icons -al --group-directories-first"
+alias la="ls -aG"
+alias l="ls"
 alias grep="grep --color=auto"
 
 alias ...='cd ./../..'

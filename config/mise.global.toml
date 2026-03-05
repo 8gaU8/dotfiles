@@ -1,21 +1,10 @@
 [tools]
-act = "latest"
-aqua = "latest"
-fzf = "latest"
-gemini-cli = "latest"
 gh = "latest"
-go = "latest"
 lazyssh = "latest"
-node = "24.13.0"
-pipx = "latest"
 pnpm = "latest"
-python = "latest"
 rust = "latest"
 usage = "latest"
 uv = "latest"
-bat = "latest"
-eza = "latest"
-zoxide = "latest"
 
 [settings]
 activate_aggressive = true
