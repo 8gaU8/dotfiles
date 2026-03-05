@@ -2,7 +2,6 @@
 gh = "latest"
 lazyssh = "latest"
 pnpm = "latest"
-rust = "latest"
 usage = "latest"
 uv = "latest"
 zoxide = "latest"
