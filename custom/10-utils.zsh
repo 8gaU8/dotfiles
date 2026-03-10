@@ -56,13 +56,13 @@ on_demand_completion() {
 	local comp_cmd_name="${completion_command%% *}"
 
 	eval "function $function_name() {
-    if ! command -v "$comp_cmd_name" &> /dev/null; then
-      return
-    fi
-    unfunction '$function_name'
-    eval \"\$(eval $completion_command)\"
-    \$_comps[$cmd_name]
-  }"
+		if ! command -v "$comp_cmd_name" &> /dev/null; then
+		return
+		fi
+		unfunction '$function_name'
+		eval \"\$(eval $completion_command)\"
+		\$_comps[$cmd_name]
+	}"
 
 	compdef $function_name $cmd_name
 }

@@ -46,7 +46,9 @@ if [[ ! -f "$BUNDLE_FILE" ]]; then
 fi
 
 # 4. Load the bundled file
-source "$BUNDLE_FILE"
+cd "$DOTFILES_DIR" && \
+    source "$BUNDLE_FILE" && \
+    cd - > /dev/null
 
 autoload -Uz compinit && compinit
 
