@@ -5,6 +5,9 @@ pnpm = "latest"
 usage = "latest"
 uv = "latest"
 zoxide = "latest"
+eza = "latest"
+ruby = "latest"
+"gem:try-cli" = "latest"
 
 [settings]
 activate_aggressive = true

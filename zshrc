@@ -16,11 +16,11 @@ function ensure_zcompiled {
 }
 
 # compile zshrc itself
-ensure_zcompiled "$(dirname $0)/zshrc"
+ensure_zcompiled "${HOME}/.zshrc"
 
 # Custom Config Locations
-export DOTFILES_DIR="$(dirname $0)"
-export BASE_CONFIG_DIR="$(dirname $0)/config"
+export DOTFILES_DIR="${HOME}/dotfiles"
+export BASE_CONFIG_DIR="${DOTFILES_DIR}/config"
 
 # ====== Bundle custom/*.zsh scripts =========
 # Configure Bundle Path
@@ -44,12 +44,13 @@ if [[ ! -f "$BUNDLE_FILE" ]]; then
 
 	echo "✅ Bundle created: $BUNDLE_FILE"
 fi
+skip_global_compinit=1
+autoload -Uz compinit && compinit
 
 # 4. Load the bundled file
 cd "$DOTFILES_DIR" && \
     source "$BUNDLE_FILE" && \
     cd - > /dev/null
 
-autoload -Uz compinit && compinit
 
 unfunction source

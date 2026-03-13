@@ -22,21 +22,13 @@ github = "mroth/evalcache"
 use = ["evalcache.plugin.zsh"]
 apply = ["source", "fpath"]
 
-[plugins.autocomplete]
-github = "marlonrichert/zsh-autocomplete"
-use = ["zsh-autocomplete.plugin.zsh"]
+[plugins.fast-syntax-highlighting]
+github = "zdharma-continuum/fast-syntax-highlighting"
+use = ["fast-syntax-highlighting.plugin.zsh"]
 
 [plugins.zsh-autosuggestions]
 github = "zsh-users/zsh-autosuggestions"
 use = ["{{ name }}.zsh"]
-
-[plugins.zsh-syntax-highlighting]
-github = "zsh-users/zsh-syntax-highlighting"
-use = ["{{ name }}.zsh"]
-
-[plugins.yous-should-use]
-github = "MichaelAquilina/zsh-you-should-use"
-use = ["you-should-use.plugin.zsh"]
 
 [plugins.shell-logger]
 github = "rcmdnk/shell-logger"
