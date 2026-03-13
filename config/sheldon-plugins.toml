@@ -26,10 +26,6 @@ apply = ["source", "fpath"]
 github = "zdharma-continuum/fast-syntax-highlighting"
 use = ["fast-syntax-highlighting.plugin.zsh"]
 
-[plugins.autocomplete]
-github = "marlonrichert/zsh-autocomplete"
-use = ["zsh-autocomplete.plugin.zsh"]
-
 [plugins.zsh-autosuggestions]
 github = "zsh-users/zsh-autosuggestions"
 use = ["{{ name }}.zsh"]
