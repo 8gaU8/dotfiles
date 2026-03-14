@@ -4,17 +4,25 @@ run = "taplo format; shfmt -l -w zshrc ./custom/*.zsh"
 
 [tasks.clean]
 description = "Clean cache files"
-run = "rm -rf ~/.cache/zsh_* */**.zwc ./*.zwc ~/.zsh-evalcache ./custom.bundle.zsh"
+run = [
+    "rm -rf */**.zwc",
+    "rm -rf custom.bundle.zsh",
+    "rm -rf ~/.zsh-evalcache",
+    "rm -rf ~/.cache/zsh_*",
+    "rm -f ~/.zshrc.zwc",
+    "rm -f ~/.zshrc",
+    "rm -f ./custom/*.gen.zsh",
+]
 
 [tasks.reinstall]
-description = "Clean and reinstall all dependencies"
+description = "Reinstall plugins and regenerate cache files"
 depends = "clean"
-run = "sheldon lock --reinstall"
+run = ["cp zshrc ~/.zshrc", "zsh load-plugins.zsh"]
 
 [tools]
 fzf = "latest"
 "aqua:starship" = "latest"
-"github:rossmacarthur/sheldon" = "latest"
+# "github:rossmacarthur/sheldon" = "latest"
 bat = "latest"
 
 # Dev tools
