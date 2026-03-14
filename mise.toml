@@ -26,7 +26,6 @@ run = [
 [tools]
 fzf = "latest"
 "aqua:starship" = "latest"
-# "github:rossmacarthur/sheldon" = "latest"
 bat = "latest"
 
 # Dev tools
