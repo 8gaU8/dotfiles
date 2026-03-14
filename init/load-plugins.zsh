@@ -35,7 +35,6 @@ rm -f "$plugin_file" "$plugin_bundle_file"
 
 source_plugin "zdharma-continuum/fast-syntax-highlighting" "fast-syntax-highlighting.plugin.zsh"
 
-bundle_plugin "mroth/evalcache" "evalcache.plugin.zsh"
 bundle_plugin "zsh-users/zsh-autosuggestions" "zsh-autosuggestions.zsh"
 bundle_plugin "rcmdnk/shell-logger" "etc/shell-logger"
 bundle_plugin "ohmyzsh/ohmyzsh" "plugins/brew/brew.plugin.zsh"

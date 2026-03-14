@@ -17,7 +17,11 @@ run = [
 [tasks.reinstall]
 description = "Reinstall plugins and regenerate cache files"
 depends = "clean"
-run = ["cp zshrc ~/.zshrc", "zsh load-plugins.zsh"]
+run = [
+    "cp zshrc ~/.zshrc",
+    "zsh ./init/load-plugins.zsh",
+    "zsh ./init/init-activation-scripts.zsh",
+]
 
 [tools]
 fzf = "latest"
