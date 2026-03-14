@@ -2,8 +2,8 @@
 
 DOTFILES="${HOME}/dotfiles"
 
+plugin_file="${DOTFILES}/custom/00-source-plugins.gen.zsh"
 plugin_bundle_file="${DOTFILES}/custom/01-bundled-plugins.gen.zsh"
-plugin_file="${DOTFILES}/custom/00-plugins.gen.zsh"
 plugins_download_dir="${DOTFILES}/plugins"
 
 function clone(){

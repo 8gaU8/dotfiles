@@ -11,7 +11,7 @@ run = [
     "rm -rf ~/.cache/zsh_*",
     "rm -f ~/.zshrc.zwc",
     "rm -f ~/.zshrc",
-    "rm ./custom/*.gen.zsh",
+    "rm -f ./custom/*.gen.zsh",
 ]
 
 [tasks.reinstall]
