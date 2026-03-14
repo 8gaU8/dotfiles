@@ -11,6 +11,13 @@ function clone(){
     local plugin_path="${2}"
     if [[ ! -d "$plugin_path" ]]; then
         git clone --depth=1 "https://github.com/${plugin_name}.git" "$plugin_path"
+    else
+        # If the directory already exists, we can choose to pull the latest changes or skip
+        echo "Plugin ${plugin_name} already exists at ${plugin_path}, skipping clone."
+        # Uncomment the following lines to pull the latest changes instead of skipping
+        echo "Updating plugin ${plugin_name} at ${plugin_path}..."
+        git -C "$plugin_path" pull --depth=1
+        echo 
     fi
 }
 
