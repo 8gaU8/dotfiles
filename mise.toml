@@ -6,7 +6,7 @@ run = "taplo format; shfmt -l -w zshrc ./custom/*.zsh"
 description = "Clean cache files"
 run = [
     "rm -rf */**.zwc",
-    "rm -rf custom.bundle.zsh",
+    "rm -rf custom.bundle.zsh*",
     "rm -rf ~/.zsh-evalcache",
     "rm -rf ~/.cache/zsh_*",
     "rm -f ~/.zshrc.zwc",
