@@ -44,7 +44,7 @@ if [[ ! -f "$BUNDLE_FILE" ]]; then
 
 	echo "✅ Bundle created: $BUNDLE_FILE"
 fi
-skip_global_compinit=1
+
 autoload -Uz compinit && compinit
 
 # 4. Load the bundled file
