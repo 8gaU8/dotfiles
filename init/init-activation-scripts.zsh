@@ -1,7 +1,7 @@
 #! /usr/bin/env zsh
 
 DOTFILES_DIR="${HOME}/dotfiles"
-activation_cache_file="${DOTFILES_DIR}/custom/02-activation-cache.gen.zsh"
+activation_cache_file="${DOTFILES_DIR}/custom/activation-cache.gen.zsh"
 
 function _evalcache() {
   local name="$(basename "$1")"
