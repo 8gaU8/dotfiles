@@ -18,10 +18,21 @@ run = [
 description = "Reinstall plugins and regenerate cache files"
 depends = "clean"
 run = [
+    'if [ ! -d "$HOME/.config/mise" ]; then mkdir -p ~/.config/mise; fi',
+    'cp ./config/mise.global.toml ~/.config/mise/config.toml',
+    'if [ ! -d "$HOME/.config/ghostty" ]; then mkdir -p ~/.config/ghostty; fi',
+    'cp ./config/ghostty/config ~/.config/ghostty/config',
+    'mise install',
     "cp zshrc ~/.zshrc",
     "zsh ./init/load-plugins.zsh",
     "zsh ./init/init-activation-scripts.zsh",
 ]
+
+[tasks.install]
+description = "Install tools and dependencies"
+run = [
+]
+
 
 [tools]
 fzf = "latest"
