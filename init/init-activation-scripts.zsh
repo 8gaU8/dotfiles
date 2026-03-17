@@ -14,7 +14,7 @@ if [ -f "$activation_cache_file" ]; then
 fi
 
 _evalcache starship init zsh
-# _evalcache /opt/homebrew/bin/brew shellenv
-# _evalcache try init ~/src/tries
+_evalcache /opt/homebrew/bin/brew shellenv
+_evalcache try init ~/src/tries
 _evalcache fzf --zsh
 _evalcache zoxide init zsh --cmd cd
