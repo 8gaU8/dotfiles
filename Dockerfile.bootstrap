@@ -1,0 +1,21 @@
+FROM ubuntu:24.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        ca-certificates \
+        curl \
+        git \
+        zsh \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /root/dotfiles
+COPY . /root/dotfiles
+
+RUN DOTFILES_SKIP_MISE_INSTALL=1 ./install.zsh \
+    && test -f /root/dotfiles/custom/bundled-plugins.gen.zsh \
+    && test -f /root/dotfiles/custom/activation-cache.gen.zsh \
+    && test -f /root/.zshrc
+
+CMD ["zsh", "-lc", "source /root/.zshrc && echo bootstrap-ok"]

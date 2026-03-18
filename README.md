@@ -14,6 +14,13 @@ git clone https://github.com/8gaU8/dotfiles/ ~/dotfiles
 cd ~/dotfiles && ./install.zsh
 ```
 
+## Docker verification
+
+```bash
+docker build -f Dockerfile.bootstrap -t dotfiles-bootstrap-test .
+docker run --rm dotfiles-bootstrap-test
+```
+
 ## Scripts
 
 1. `zshrc`: entry point
