@@ -34,6 +34,13 @@ if [[ ! -f "$BUNDLE_FILE" ]]; then
 	# Start bundle
 	: >"$BUNDLE_FILE"
 
+	for f in "$CUSTOM_DIR"/*.gen.zsh; do
+		echo "  Appending $f..."
+		echo "# --- Source: ${f:t} ---" >>"$BUNDLE_FILE"
+		cat "$f" >>"$BUNDLE_FILE"
+		echo -e "\n" >>"$BUNDLE_FILE"
+	done
+
 	# Concatinate scripts sequencially
 	for f in "$CUSTOM_DIR"/[0-9][0-9]-*.zsh; do
 		echo "  Appending $f..."
@@ -44,7 +51,7 @@ if [[ ! -f "$BUNDLE_FILE" ]]; then
 
 	echo "✅ Bundle created: $BUNDLE_FILE"
 fi
-skip_global_compinit=1
+
 autoload -Uz compinit && compinit
 
 # 4. Load the bundled file

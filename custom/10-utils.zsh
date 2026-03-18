@@ -28,27 +28,6 @@ update_zsh_custom() {
 	)
 }
 
-add_to_path_if_exists() {
-	# example
-	# $ add_to_path_if_exists "/usr/local/bin"
-	# ディレクトリが存在する場合のみPATHに追加し、存在しない場合は警告を出す関数
-	local dir="$1"
-
-	if [[ -z "$dir" ]]; then
-		error "add_to_path_if_exists: Directory argument is required."
-		return 1
-	fi
-
-	if [[ -d "$dir" ]]; then
-		# PATHの先頭に追加
-		path=("$dir" $path)
-		export PATH
-	else
-		warn "Directory not found. Skipping addition to PATH: $dir"
-		return 1
-	fi
-}
-
 on_demand_completion() {
 	local cmd_name=$1
 	local completion_command=$2

@@ -1,0 +1,49 @@
+#! /usr/bin/env zsh
+
+DOTFILES="${HOME}/dotfiles"
+
+plugin_bundle_file="${DOTFILES}/custom/bundled-plugins.gen.zsh"
+plugins_download_dir="${DOTFILES}/plugins"
+
+function clone(){
+    local plugin_name="${1}"
+    local plugin_path="${2}"
+    if [[ ! -d "$plugin_path" ]]; then
+        git clone --depth=1 "https://github.com/${plugin_name}.git" "$plugin_path"
+    else
+        # If the directory already exists, we can choose to pull the latest changes or skip
+        echo "Plugin ${plugin_name} already exists at ${plugin_path}, skipping clone."
+        # Uncomment the following lines to pull the latest changes instead of skipping
+        echo "Updating plugin ${plugin_name} at ${plugin_path}..."
+        git -C "$plugin_path" pull --depth=1
+        echo 
+    fi
+}
+
+function source_plugin(){
+    local plugin_name="$1"
+    local script_to_use="$2"
+    local plugin_path="${plugins_download_dir}/${plugin_name}"
+    clone "${plugin_name}" "${plugin_path}"
+    echo "# --- Source: ${plugin_name} (${script_to_use}) ---" >> "$plugin_bundle_file"
+    echo "source ${plugin_path}/${script_to_use}" >> "$plugin_bundle_file"
+    echo -e "\n" >> "$plugin_bundle_file"
+}
+
+function bundle_plugin(){
+    local plugin_name="$1"
+    local script_to_use="$2"
+    local plugin_path="${plugins_download_dir}/${plugin_name}"
+    clone "${plugin_name}" "${plugin_path}"
+    echo "# --- Source: ${plugin_name} (${script_to_use}) ---" >> "$plugin_bundle_file"
+    cat "${plugin_path}/${script_to_use}" >> "$plugin_bundle_file"
+    echo -e "\n" >> "$plugin_bundle_file"
+}
+
+source_plugin "zdharma-continuum/fast-syntax-highlighting" "fast-syntax-highlighting.plugin.zsh"
+
+bundle_plugin "zsh-users/zsh-autosuggestions" "zsh-autosuggestions.zsh"
+bundle_plugin "rcmdnk/shell-logger" "etc/shell-logger"
+bundle_plugin "ohmyzsh/ohmyzsh" "plugins/brew/brew.plugin.zsh"
+
+# source_plugin "marlonrichert/zsh-autocomplete" "zsh-autocomplete.plugin.zsh"
