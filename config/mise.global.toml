@@ -13,3 +13,6 @@ ruby = "latest"
 activate_aggressive = true
 color_theme = "catppuccin"
 experimental = true
+
+[settings.ruby]
+compile = false
