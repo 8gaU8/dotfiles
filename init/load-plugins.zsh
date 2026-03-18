@@ -6,6 +6,7 @@ plugin_bundle_file="${DOTFILES}/custom/bundled-plugins.gen.zsh"
 plugins_download_dir="${DOTFILES}/plugins"
 
 mkdir -p "${plugins_download_dir}"
+# Rewrite the bundle file each run so reruns do not duplicate plugin content.
 : >| "${plugin_bundle_file}"
 
 function clone(){
