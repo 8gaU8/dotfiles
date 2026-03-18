@@ -1,9 +1,12 @@
 #! /usr/bin/env zsh
 
-DOTFILES="${HOME}/dotfiles"
+DOTFILES="${DOTFILES_DIR:-${HOME}/dotfiles}"
 
 plugin_bundle_file="${DOTFILES}/custom/bundled-plugins.gen.zsh"
 plugins_download_dir="${DOTFILES}/plugins"
+
+mkdir -p "${plugins_download_dir}"
+: >| "${plugin_bundle_file}"
 
 function clone(){
     local plugin_name="${1}"
