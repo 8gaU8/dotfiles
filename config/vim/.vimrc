@@ -11,6 +11,10 @@ Plug 'tpope/vim-sensible'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'tidalcycles/vim-tidal'
 
+" LSP
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+
 call plug#end()
 
 " ---------------------------
@@ -33,16 +37,16 @@ set showcmd
 " 行番号を表示
 set number
 "" 現在の行を強調表示
-"set cursorline
+" set cursorline
 "" 現在の行を強調表示（縦）
-"set cursorcolumn
+" set cursorcolumn
 "
 " 行末の1文字先までカーソルを移動できるように
 set virtualedit=onemore
 " インデントはスマートインデント
 set smartindent
 " ビープ音を可視化
-set visualbell
+" set visualbell
 " 括弧入力時の対応する括弧を表示
 set showmatch
 " ステータスラインを常に表示
@@ -53,7 +57,7 @@ set wildmode=list:longest
 nnoremap j gj
 nnoremap k gk
 " シンタックスハイライトの有効化
-syntax enable
+"syntax enable
 
 
 " Tab系
