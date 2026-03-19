@@ -14,8 +14,8 @@ function clone(){
         # If the directory already exists, we can choose to pull the latest changes or skip
         echo "Plugin ${plugin_name} already exists at ${plugin_path}, skipping clone."
         # Uncomment the following lines to pull the latest changes instead of skipping
-        echo "Updating plugin ${plugin_name} at ${plugin_path}..."
-        git -C "$plugin_path" pull --depth=1
+        # echo "Updating plugin ${plugin_name} at ${plugin_path}..."
+        # git -C "$plugin_path" pull --depth=1
         echo 
     fi
 }
