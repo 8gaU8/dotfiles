@@ -1,5 +1,3 @@
-#! /usr/bin/env zsh
-
 path+=( "${HOME}/.antigravity/antigravity/bin")
 
 # mise will handle these

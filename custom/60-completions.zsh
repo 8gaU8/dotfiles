@@ -1,5 +1,3 @@
-#! /usr/bin/env zsh
-
 on_demand_completion "tailscale" "tailscale completion zsh"
 on_demand_completion "uv" "uv generate-shell-completion zsh"
 on_demand_completion "uvx" "uvx --generate-shell-completion=zsh"

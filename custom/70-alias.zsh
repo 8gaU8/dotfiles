@@ -1,5 +1,3 @@
-#! /usr/bin/env zsh
-
 alias cat="$(which bat)"
 alias o="/usr/bin/open"
 alias c="code ."

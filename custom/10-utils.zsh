@@ -1,5 +1,3 @@
-#! /usr/bin/env zsh
-
 update_zsh_custom() {
 	# check this repository if it's the latest version
 	(

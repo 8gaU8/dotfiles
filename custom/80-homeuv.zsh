@@ -1,5 +1,3 @@
-#! /usr/bin/env zsh
-
 _PY_HOME="${HOME}/.uv-home"
 
 [[ -d "${_PY_HOME}" ]] || {
