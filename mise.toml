@@ -22,6 +22,7 @@ run = [
     'cp ./config/mise.global.toml ~/.config/mise/config.toml',
     'if [ ! -d "$HOME/.config/ghostty" ]; then mkdir -p ~/.config/ghostty; fi',
     'cp ./config/ghostty/config ~/.config/ghostty/config',
+    'cp ./config/vim/.vimrc ~/.vimrc',
     'mise install',
     "cp zshrc ~/.zshrc",
     "zsh ./init/load-plugins.zsh",
