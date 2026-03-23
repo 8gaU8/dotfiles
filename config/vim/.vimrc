@@ -17,6 +17,8 @@ Plug 'mattn/vim-lsp-settings'
 
 call plug#end()
 
+colorscheme dracula
+
 " ---------------------------
 " setting
 "文字コードをUFT-8に設定
