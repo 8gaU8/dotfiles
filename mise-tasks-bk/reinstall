@@ -6,12 +6,16 @@ echo "Reinstalling dotfiles..."
 # Link vimrc
 ln -sf "${DOTFILES}/config/vim/.vimrc" "${HOME}/.vimrc"
 
-# copy mise config
+# link mise config
 # Create config directory if it doesn't exist
 mkdir -p "${HOME}/.config/mise"
-cp "${DOTFILES}/config/mise.global.toml" "${HOME}/.config/mise/config.toml"
+ln -sf "${DOTFILES}/config/mise.global.toml" "${HOME}/.config/mise/config.toml"
 
 # link ghostty config
 # Create config directory if it doesn't exist
 mkdir -p "${HOME}/.config/ghostty"
 ln -sf "${DOTFILES}/config/ghostty/config.toml" "${HOME}/.config/ghostty/config"
+
+# link starship config
+mkdir -p "${HOME}/.config/starship"
+ln -sf "${DOTFILES}/config/starship/starship.toml" "${HOME}/.config/starship.toml"
