@@ -1,5 +1,5 @@
 #! /usr/bin/env zsh
 #MISE description="_default"
-#MISE depends=["init:reinstall", "init:bundle"]
+#MISE depends=["clean", "init:reinstall", "init:bundle"]
 
 echo "Initialization"
