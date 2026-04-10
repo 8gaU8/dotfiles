@@ -5,3 +5,6 @@ echo "Cleaning up generated files..."
 rm -f custom/*.gen.zsh
 rm -f custom.bundle.zsh
 rm -f custom.bundle.zsh.zwc
+
+rm -f ~/.zshrc
+rm -f ~/.zshrc.zwc
