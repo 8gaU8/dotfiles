@@ -1,0 +1,37 @@
+#! /usr/bin/env bash
+#MISE description="bundle"
+#MISE depends=["init:activations", "init:plugins"]
+
+echo "bundle"
+# Custom Config Locations
+DOTFILES_DIR="$(pwd)"
+
+# ====== Bundle custom/*.zsh scripts =========
+# Configure Bundle Path
+bundle_file="${DOTFILES_DIR}/custom.bundle.zsh"
+custom_dir="${DOTFILES_DIR}/custom"
+
+# Generate bundled file when it doesn't exist
+if [[ ! -f "${bundle_file}" ]]; then
+	echo "⚡️ Zsh bundle not found. Building for the first time..."
+
+	# Start bundle
+	: >"${bundle_file}"
+
+	for f in "${custom_dir}"/*.gen.zsh; do
+		echo "  Appending $f..."
+		echo "# --- Source: ${f:t} ---" >> "${bundle_file}"
+		cat "$f" >> "${bundle_file}"
+		echo -e "\n" >> "${bundle_file}"
+	done
+
+	# Concatinate scripts sequencially
+	for f in "${custom_dir}"/[0-9][0-9]-*.zsh; do
+		echo "  Appending $f..."
+		echo "# --- Source: ${f:t} ---" >> "${bundle_file}"
+		cat "$f" >>"${bundle_file}"
+		echo -e "\n" >>"${bundle_file}"
+	done
+
+	echo "✅ Bundle created: ${bundle_file}"
+fi

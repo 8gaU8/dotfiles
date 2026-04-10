@@ -1,0 +1,5 @@
+#! /usr/bin/env bash
+#MISE description="_default"
+#MISE depends=["init:bundle"]
+
+echo "Initialization"

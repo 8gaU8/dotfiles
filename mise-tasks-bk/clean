@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+#MISE description="clean up generated files"
+echo "Cleaning up generated files..."
+
+rm -f custom/*.gen.zsh
+rm -f custom.bundle.zsh
+rm -f custom.bundle.zsh.zwc
