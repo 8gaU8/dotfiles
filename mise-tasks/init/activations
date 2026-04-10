@@ -3,6 +3,8 @@
 
 echo "activations"
 
+eval "$(${HOME}/.local/bin/mise activate zsh --shims)"
+
 DOTFILES_DIR="$(pwd)"
 activation_cache_file="${DOTFILES_DIR}/custom/activation-cache.gen.zsh"
 
