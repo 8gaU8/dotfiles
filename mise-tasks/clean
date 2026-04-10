@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/bin/env zsh
 #MISE description="clean up generated files"
 echo "Cleaning up generated files..."
 

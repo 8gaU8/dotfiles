@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/bin/env zsh
 #MISE description="bundle"
 #MISE depends=["init:activations", "init:plugins"]
 
@@ -20,17 +20,21 @@ if [[ ! -f "${bundle_file}" ]]; then
 
 	for f in "${custom_dir}"/*.gen.zsh; do
 		echo "  Appending $f..."
-		echo "# --- Source: ${f:t} ---" >> "${bundle_file}"
-		cat "$f" >> "${bundle_file}"
-		echo -e "\n" >> "${bundle_file}"
+		{
+			"# --- Source: ${f:t} ---" 
+			cat "$f"
+			echo -e 
+		} >> "${bundle_file}"
 	done
 
 	# Concatinate scripts sequencially
 	for f in "${custom_dir}"/[0-9][0-9]-*.zsh; do
 		echo "  Appending $f..."
-		echo "# --- Source: ${f:t} ---" >> "${bundle_file}"
-		cat "$f" >>"${bundle_file}"
-		echo -e "\n" >>"${bundle_file}"
+		{
+			"# --- Source: ${f:t} ---"
+			cat "$f"
+			echo -e
+		} >> "${bundle_file}"
 	done
 
 	echo "✅ Bundle created: ${bundle_file}"
