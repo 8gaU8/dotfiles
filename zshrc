@@ -20,6 +20,7 @@ ensure_zcompiled "${HOME}/.zshrc"
 
 # Custom Config Locations
 export DOTFILES_DIR="${HOME}/dotfiles"
+export BASE_CONFIG_DIR="${DOTFILES_DIR}/config"
 
 # ====== Bundle custom/*.zsh scripts =========
 # Configure Bundle Path
