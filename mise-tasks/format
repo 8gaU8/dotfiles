@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-#MISE description=""Format TOML & ZSH files"
+#MISE description="Format TOML & ZSH files"
 
 taplo format
 shfmt -l -w zshrc ./custom/*.zsh
