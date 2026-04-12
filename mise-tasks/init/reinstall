@@ -1,0 +1,20 @@
+#! /usr/bin/env zsh
+#MISE description="Reinstall dotfiles"
+echo "Reinstalling dotfiles..."
+
+DOTFILES="${HOME}/dotfiles"
+
+# Link vimrc
+ln -sf "${DOTFILES}/config/vim/.vimrc" "${HOME}/.vimrc"
+
+# link mise config
+# Create config directory if it doesn't exist
+mkdir -p "${HOME}/.config/mise"
+ln -sf "${DOTFILES}/config/mise.global.toml" "${HOME}/.config/mise/config.toml"
+
+# link ghostty config
+# Create config directory if it doesn't exist
+mkdir -p "${HOME}/.config/ghostty"
+ln -sf "${DOTFILES}/config/ghostty/config" "${HOME}/.config/ghostty/config"
+
+ln -sf "${DOTFILES}/zshrc" "${HOME}/.zshrc"
