@@ -13,10 +13,6 @@ function _evalcache() {
 }
 
 
-if [ -f "$activation_cache_file" ]; then
-  rm  "$activation_cache_file"
-fi
-
 _evalcache starship init zsh
 _evalcache /opt/homebrew/bin/brew shellenv
 _evalcache try init ~/src/tries
