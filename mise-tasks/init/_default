@@ -1,4 +1,4 @@
-#! /usr/bin/env zsh
+#! /usr/bin/env bash
 #MISE description="_default"
 #MISE depends=["clean", "init:reinstall", "init:bundle"]
 

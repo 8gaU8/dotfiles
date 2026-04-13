@@ -1,10 +1,11 @@
-#! /usr/bin/env zsh
+#! /usr/bin/env bash
 #MISE description="plugins"
 
 DOTFILES="$(pwd)"
 
 plugin_bundle_file="${DOTFILES}/custom/bundled-plugins.gen.zsh"
 plugins_download_dir="${DOTFILES}/plugins"
+:> "$plugin_bundle_file"
 
 function clone(){
     local plugin_name="${1}"
@@ -26,9 +27,11 @@ function source_plugin(){
     local script_to_use="$2"
     local plugin_path="${plugins_download_dir}/${plugin_name}"
     clone "${plugin_name}" "${plugin_path}"
-    echo "# --- Source: ${plugin_name} (${script_to_use}) ---" >> "$plugin_bundle_file"
-    echo "source ${plugin_path}/${script_to_use}" >> "$plugin_bundle_file"
-    echo -e "\n" >> "$plugin_bundle_file"
+    {
+        echo "# --- Source: ${plugin_name} (${script_to_use}) ---" 
+        echo "source ${plugin_path}/${script_to_use}" 
+        echo -e "\n" 
+    } >> "$plugin_bundle_file"
 }
 
 function bundle_plugin(){
@@ -36,9 +39,11 @@ function bundle_plugin(){
     local script_to_use="$2"
     local plugin_path="${plugins_download_dir}/${plugin_name}"
     clone "${plugin_name}" "${plugin_path}"
-    echo "# --- Source: ${plugin_name} (${script_to_use}) ---" >> "$plugin_bundle_file"
-    cat "${plugin_path}/${script_to_use}" >> "$plugin_bundle_file"
-    echo -e "\n" >> "$plugin_bundle_file"
+    {
+        echo "# --- Source: ${plugin_name} (${script_to_use}) ---" 
+        cat "${plugin_path}/${script_to_use}" 
+        echo -e "\n" 
+    } >> "$plugin_bundle_file"
 }
 
 source_plugin "zdharma-continuum/fast-syntax-highlighting" "fast-syntax-highlighting.plugin.zsh"

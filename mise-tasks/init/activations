@@ -1,14 +1,17 @@
-#! /usr/bin/env zsh
+#! /usr/bin/env bash
 #MISE description="activations"
 
 echo "activations"
 
-eval "$(${HOME}/.local/bin/mise activate zsh --shims)"
+eval "$("${HOME}"/.local/bin/mise activate bash --shims)"
 
 DOTFILES_DIR="$(pwd)"
 activation_cache_file="${DOTFILES_DIR}/custom/activation-cache.gen.zsh"
+:> "$activation_cache_file"
 
 function _evalcache() {
+  echo "Evaluating: $*"
+  which "$1" 
   "$@" >> "$activation_cache_file"
 }
 
