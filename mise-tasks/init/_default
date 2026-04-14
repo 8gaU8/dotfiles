@@ -1,5 +1,3 @@
 #! /usr/bin/env bash
 #MISE description="_default"
-#MISE depends=["clean", "init:reinstall", "init:bundle"]
-
-echo "Initialization"
+#MISE depends=["clean",  "init:bundle"]

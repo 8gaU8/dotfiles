@@ -18,7 +18,6 @@ function clone(){
         # Uncomment the following lines to pull the latest changes instead of skipping
         # echo "Updating plugin ${plugin_name} at ${plugin_path}..."
         # git -C "$plugin_path" pull --depth=1
-        echo 
     fi
 }
 

@@ -1,5 +1,3 @@
-#! /usr/bin/env zsh
-
 # ========= custom hook to auto-compile zsh scripts ============
 # ref: https://zenn.dev/fuzmare/articles/zsh-source-zcompile-all
 function source {

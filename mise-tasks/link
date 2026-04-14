@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
-#MISE description="Reinstall dotfiles"
-echo "Reinstalling dotfiles..."
+#MISE description="Make symlinks for dotfiles"
+echo "Linking dotfiles..."
 
 DOTFILES="${HOME}/dotfiles"
 
