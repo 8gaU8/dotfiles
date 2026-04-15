@@ -1,0 +1,11 @@
+[tools]
+gemini-cli = "latest"
+node = "24"
+pnpm = "latest"
+
+[tasks."apply-karabiner-config"]
+description = "Apply the Karabiner configuration"
+alias = ["k"]
+run = ["pnpm tsx src/index.ts"]
+
+
