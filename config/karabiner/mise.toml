@@ -6,7 +6,12 @@ pnpm = "latest"
 [tasks."apply-karabiner-config"]
 description = "Apply the Karabiner configuration"
 alias = ["k"]
-run = ["pnpm tsx global-config.ts"]
+run = ["pnpm tsx global-config.ts --profile karabiner-ts"]
+
+[tasks."dry-run-karabiner-config"]
+description = "Perform a dry run of the Karabiner configuration"
+alias = ["d"]
+run = ["pnpm tsx global-config.ts --dry-run"]
 
 [tasks.fix]
 description = "Run code formatters and linters"
