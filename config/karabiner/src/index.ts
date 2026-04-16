@@ -1,21 +1,12 @@
-import {
-  mapDoubleTap,
-  ModificationParameters,
-  rule,
-  writeToProfile,
-} from "karabiner.ts";
+import { ModificationParameters, writeToProfile } from "karabiner.ts";
 
 import { launchApp } from "./rules/appLauncher";
+import { viArrowsWithFn } from "./rules/arrows";
 import capsLockToControl from "./rules/capsLocks";
 import { emojilayer } from "./rules/emoji";
+import { gamingKeyboard } from "./rules/externalKeyboards";
 import { nbToFn } from "./rules/functions";
 import { commandAsIMESwitch } from "./rules/IME";
-
-function playgroundRules() {
-  return rule("Playground").manipulators([
-    mapDoubleTap("spacebar").to("up_arrow"),
-  ]);
-}
 
 function main() {
   // const profile = "--dry-run";
@@ -26,6 +17,8 @@ function main() {
     nbToFn(),
     launchApp(),
     emojilayer(),
+    viArrowsWithFn(),
+    gamingKeyboard(),
   ];
   const parameters: ModificationParameters = {
     "basic.to_if_alone_timeout_milliseconds": 1000,
