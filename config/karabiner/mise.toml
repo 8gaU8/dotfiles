@@ -8,4 +8,8 @@ description = "Apply the Karabiner configuration"
 alias = ["k"]
 run = ["pnpm tsx src/index.ts"]
 
+[tasks.fix]
+description = "Run code formatters and linters"
+alias = ["f"]
+run = ["pnpm exec biome check --write"]
 
