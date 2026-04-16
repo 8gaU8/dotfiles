@@ -1,4 +1,4 @@
-import { ModificationParameters, writeToProfile } from "karabiner.ts";
+import { type ModificationParameters, writeToProfile } from "karabiner.ts";
 
 import { launchApp } from "./rules/appLauncher";
 import { viArrowsWithFn } from "./rules/arrows";

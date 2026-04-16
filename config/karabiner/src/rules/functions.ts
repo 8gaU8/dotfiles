@@ -1,5 +1,4 @@
-import { type RuleBuilder, rule, map } from "karabiner.ts";
-
+import { map, type RuleBuilder, rule } from "karabiner.ts";
 
 export function nbToFn(): RuleBuilder {
   return rule("NumPad → Fn").manipulators([

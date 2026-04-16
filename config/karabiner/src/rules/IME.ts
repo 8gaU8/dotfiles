@@ -1,4 +1,4 @@
-import { map, rule, type RuleBuilder } from "karabiner.ts";
+import { map, type RuleBuilder, rule } from "karabiner.ts";
 
 export function commandAsIMESwitch(): RuleBuilder {
   return rule("Command → IME switch").manipulators([

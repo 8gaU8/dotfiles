@@ -1,8 +1,4 @@
-import {
-    rule,
-    toKey,
-    withModifier
-} from "karabiner.ts";
+import { rule, toKey, withModifier } from "karabiner.ts";
 
 export function viArrowsWithFn() {
   return rule("toggle h/j/k/l to arrow keys with fn").manipulators([
