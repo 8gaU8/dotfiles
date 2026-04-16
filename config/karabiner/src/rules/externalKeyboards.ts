@@ -1,6 +1,6 @@
 import { ifDevice, map, rule, withCondition } from "karabiner.ts";
 
-export function gamingKeyboard() {
+export function thePurpleKeyboard() {
   return rule("Device Specific Rule") // 2 rules
     .manipulators([
       withCondition(ifDevice({ vendor_id: 6700, product_id: 39689 }))([

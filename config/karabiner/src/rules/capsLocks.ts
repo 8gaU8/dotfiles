@@ -1,6 +1,6 @@
 import { map, type RuleBuilder, rule } from "karabiner.ts";
 
-export default function capsLockToControl(): RuleBuilder {
+export function capsLockToControl(): RuleBuilder {
   const description = "Caps Lock to Left Control when held, Escape when tapped";
   return rule("Left Control → Control/Escape").manipulators([
     map("caps_lock", "optionalAny")

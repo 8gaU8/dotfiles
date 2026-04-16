@@ -1,12 +1,14 @@
 import { type ModificationParameters, writeToProfile } from "karabiner.ts";
 
-import { launchApp } from "./rules/appLauncher";
-import { viArrowsWithFn } from "./rules/arrows";
-import capsLockToControl from "./rules/capsLocks";
-import { emojilayer } from "./rules/emoji";
-import { gamingKeyboard } from "./rules/externalKeyboards";
-import { nbToFn } from "./rules/functions";
-import { commandAsIMESwitch } from "./rules/IME";
+import {
+  capsLockToControl,
+  commandAsIMESwitch,
+  emojiLayer,
+  launchApp,
+  nbToFn,
+  thePurpleKeyboard,
+  viArrowsWithFn,
+} from "./rules";
 
 function main() {
   // const profile = "--dry-run";
@@ -16,9 +18,9 @@ function main() {
     commandAsIMESwitch(),
     nbToFn(),
     launchApp(),
-    emojilayer(),
+    emojiLayer(),
     viArrowsWithFn(),
-    gamingKeyboard(),
+    thePurpleKeyboard(),
   ];
   const parameters: ModificationParameters = {
     "basic.to_if_alone_timeout_milliseconds": 1000,
