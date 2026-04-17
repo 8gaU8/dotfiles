@@ -7,6 +7,7 @@ import {
   commandAsIMESwitch,
   emojiLayer,
   launchApp,
+  magicArrows,
   nbToFn,
   thePurpleKeyboard,
   viArrowsWithFn,
@@ -43,6 +44,7 @@ function main() {
     launchApp(),
     emojiLayer(),
     viArrowsWithFn(),
+    magicArrows(),
     thePurpleKeyboard(),
   ];
   const parameters: ModificationParameters = {

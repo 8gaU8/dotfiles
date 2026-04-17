@@ -1,5 +1,5 @@
 import { launchApp } from "./appLauncher";
-import { viArrowsWithFn } from "./arrows";
+import { magicArrows, viArrowsWithFn } from "./arrows";
 import { capsLockToControl } from "./capsLocks";
 import { emojiLayer } from "./emoji";
 import { thePurpleKeyboard } from "./externalKeyboards";
@@ -11,6 +11,7 @@ export {
   commandAsIMESwitch,
   emojiLayer,
   launchApp,
+  magicArrows,
   nbToFn,
   thePurpleKeyboard,
   viArrowsWithFn,
