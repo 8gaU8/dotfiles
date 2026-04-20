@@ -4,7 +4,7 @@ import { allRules } from "./libs/rules";
 import { parseProfileArgs } from "./libs/utils";
 
 function main() {
-  const profile = parseProfileArgs();
+  const profile = parseProfileArgs("karabiner-ts");
 
   const parameters: ModificationParameters = {
     "basic.to_if_alone_timeout_milliseconds": 1000,

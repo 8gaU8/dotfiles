@@ -1,8 +1,7 @@
 import process from "node:process";
 import yargs from "yargs";
 
-export function parseProfileArgs() {
-  let profile = "Default Profile";
+export function parseProfileArgs(profile: string) {
   const args = yargs(process.argv.slice(2))
     .option("dryRun", {
       alias: "d",
