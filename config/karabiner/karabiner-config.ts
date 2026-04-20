@@ -1,29 +1,7 @@
-import process from "node:process";
 import { type ModificationParameters, writeToProfile } from "karabiner.ts";
-import yargs from "yargs";
 
-import { allRules } from "./rules";
-
-function parseProfileArgs() {
-  let profile = "Default Profile";
-  const args = yargs(process.argv.slice(2))
-    .option("dryRun", {
-      alias: "d",
-      type: "boolean",
-      description: "Run in dry-run mode without applying changes",
-    })
-    .option("profile", {
-      alias: "p",
-      type: "string",
-      description: "Specify the profile to modify",
-    })
-    .parseSync();
-
-  if (args.dryRun) profile = "--dry-run";
-  else if (args.profile) profile = args.profile;
-
-  return profile;
-}
+import { allRules } from "./libs/rules";
+import { parseProfileArgs } from "./libs/utils";
 
 function main() {
   const profile = parseProfileArgs();
