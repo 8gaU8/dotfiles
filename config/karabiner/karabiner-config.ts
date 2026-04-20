@@ -2,16 +2,7 @@ import process from "node:process";
 import { type ModificationParameters, writeToProfile } from "karabiner.ts";
 import yargs from "yargs";
 
-import {
-  capsLockToControl,
-  commandAsIMESwitch,
-  emojiLayer,
-  launchApp,
-  magicArrows,
-  nbToFn,
-  thePurpleKeyboard,
-  viArrowsWithFn,
-} from "./rules";
+import { allRules } from "./rules";
 
 function parseProfileArgs() {
   let profile = "Default Profile";
@@ -37,16 +28,6 @@ function parseProfileArgs() {
 function main() {
   const profile = parseProfileArgs();
 
-  const rules = [
-    capsLockToControl(),
-    commandAsIMESwitch(),
-    nbToFn(),
-    launchApp(),
-    emojiLayer(),
-    viArrowsWithFn(),
-    magicArrows(),
-    thePurpleKeyboard(),
-  ];
   const parameters: ModificationParameters = {
     "basic.to_if_alone_timeout_milliseconds": 1000,
     "basic.to_if_held_down_threshold_milliseconds": 500,
@@ -55,7 +36,7 @@ function main() {
     "double_tap.delay_milliseconds": 150,
   };
 
-  writeToProfile(profile, rules, parameters);
+  writeToProfile(profile, allRules, parameters);
 }
 
 main();
