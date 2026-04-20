@@ -57,14 +57,13 @@ export function thePurpleKeyboard() {
     withCondition(isPurpleKeyboard())([
       escapeToGrave,
 
-      map("application", "optionalAny").to("right_option"),
       map("left_control").to("fn"),
+      map("application").to("right_option"),
       map("right_control").to("right_option"),
-      map("right_option").to("right_command"),
 
       // IME
       map("left_command").to("left_command").toIfAlone("japanese_eisuu"),
-      map("right_option", "optionalAny")
+      map("right_command", "optionalAny")
         .to("right_command")
         .toIfAlone("japanese_kana"),
     ]),
