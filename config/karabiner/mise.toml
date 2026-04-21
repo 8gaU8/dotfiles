@@ -1,0 +1,20 @@
+[tools]
+gemini-cli = "latest"
+node = "24"
+pnpm = "latest"
+
+[tasks."apply-karabiner-config"]
+description = "Apply the Karabiner configuration"
+alias = ["k"]
+run = ["pnpm tsx karabiner-config.ts --profile karabiner-ts"]
+
+[tasks."dry-run-karabiner-config"]
+description = "Perform a dry run of the Karabiner configuration"
+alias = ["d"]
+run = ["pnpm tsx karabiner-config.ts --dry-run"]
+
+[tasks.fix]
+description = "Run code formatters and linters"
+alias = ["f"]
+run = ["pnpm exec biome check --write"]
+

@@ -1,0 +1,19 @@
+{
+  "name": "karabiner-config",
+  "description": "karabiner config in karabiner.ts",
+  "scripts": {
+    "build": "tsx src/index.ts",
+    "update": "pnpm update karabiner.ts"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.12",
+    "@types/node": "^24.12.2",
+    "@types/yargs": "^17.0.35",
+    "tsx": "^4",
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "karabiner.ts": "^1.36.0",
+    "yargs": "^18.0.0"
+  }
+}
