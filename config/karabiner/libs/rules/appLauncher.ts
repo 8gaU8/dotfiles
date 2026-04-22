@@ -6,6 +6,7 @@ const APPS = {
   Editor: "Visual Studio Code",
   Note: "Notion",
   Keynote: "Keynote",
+  Preview: "Preview",
   Zotero: "Zotero",
 };
 
@@ -17,6 +18,7 @@ export function launchApp() {
       x: toApp(APPS.Editor),
       n: toApp(APPS.Note),
       k: toApp(APPS.Keynote),
+      p: toApp(APPS.Preview),
       z: toApp(APPS.Zotero),
     }),
   ]);
