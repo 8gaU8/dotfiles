@@ -4,7 +4,8 @@
 eval "$("${HOME}"/.local/bin/mise activate bash --shims)"
 
 DOTFILES_DIR="$(pwd)"
-activation_cache_file="${DOTFILES_DIR}/custom/activation-cache.gen.zsh"
+ZSHDIR="${DOTFILES_DIR}/zsh"
+activation_cache_file="${ZSHDIR}/custom/activation-cache.gen.zsh"
 :> "$activation_cache_file"
 
 function _evalcache() {

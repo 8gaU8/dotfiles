@@ -2,4 +2,4 @@
 #MISE description="Format TOML & ZSH files"
 
 taplo format
-shfmt -l -w zshrc ./custom/*.zsh
+shfmt -l -w zshrc zsh/custom/*.zsh

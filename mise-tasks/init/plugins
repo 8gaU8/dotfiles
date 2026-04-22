@@ -2,8 +2,9 @@
 #MISE description="plugins"
 
 DOTFILES="$(pwd)"
+ZSHDIR="${DOTFILES}/zsh"
 
-plugin_bundle_file="${DOTFILES}/custom/bundled-plugins.gen.zsh"
+plugin_bundle_file="${ZSHDIR}/custom/bundled-plugins.gen.zsh"
 plugins_download_dir="${DOTFILES}/plugins"
 :> "$plugin_bundle_file"
 

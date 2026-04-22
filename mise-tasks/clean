@@ -2,6 +2,6 @@
 #MISE description="clean up generated files"
 echo "Cleaning up generated files..."
 
-rm -f custom.bundle.zsh.zwc
+rm -f zsh/custom.bundle.zsh.zwc
 
 rm -f ~/.zshrc.zwc
