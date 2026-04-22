@@ -22,7 +22,7 @@ export BASE_CONFIG_DIR="${DOTFILES_DIR}/config"
 
 # ====== Bundle custom/*.zsh scripts =========
 # Configure Bundle Path
-bundle_file="$DOTFILES_DIR/custom.bundle.zsh"
+bundle_file="$DOTFILES_DIR/zsh/custom.bundle.zsh"
 
 autoload -Uz compinit && compinit
 

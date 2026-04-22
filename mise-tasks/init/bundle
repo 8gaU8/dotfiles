@@ -4,11 +4,12 @@
 
 # Custom Config Locations
 DOTFILES_DIR="$(pwd)"
+ZSHDIR="${DOTFILES_DIR}/zsh"
 
 # ====== Bundle custom/*.zsh scripts =========
 # Configure Bundle Path
-bundle_file="${DOTFILES_DIR}/custom.bundle.zsh"
-custom_dir="${DOTFILES_DIR}/custom"
+bundle_file="${ZSHDIR}/custom.bundle.zsh"
+custom_dir="${ZSHDIR}/custom"
 
 # Generate bundled file when it doesn't exist
 

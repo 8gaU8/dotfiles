@@ -1,5 +1,5 @@
 /plugins
-/custom/*.gen.zsh
+zsh/custom/*.gen.zsh
 # bundled
 custom.bundle.zsh
 
