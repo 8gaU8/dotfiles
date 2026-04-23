@@ -1,0 +1,5 @@
+#! /usr/bin/env bash
+#MISE description="install zsh dotfiles"
+echo "Installing zsh dotfiles..."
+
+bash zsh/init_scripts/init.bash

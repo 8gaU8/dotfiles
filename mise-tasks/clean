@@ -1,7 +1,5 @@
 #! /usr/bin/env bash
-#MISE description="clean up generated files"
+#MISE description="cleaning generated files for zsh dotfiles"
 echo "Cleaning up generated files..."
 
-rm -f zsh/custom.bundle.zsh.zwc
-
-rm -f ~/.zshrc.zwc
+bash zsh/init_scripts/clean.bash
