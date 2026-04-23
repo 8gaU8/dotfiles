@@ -23,7 +23,6 @@ export const allRules = [
   nbToFn(),
 
   // utility
-  emojiLayer(),
   viArrowsWithFn(),
   magicArrows(),
 
