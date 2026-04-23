@@ -17,4 +17,4 @@ ln -sf "${DOTFILES}/config/mise.global.toml" "${HOME}/.config/mise/config.toml"
 mkdir -p "${HOME}/.config/ghostty"
 ln -sf "${DOTFILES}/config/ghostty/config" "${HOME}/.config/ghostty/config"
 
-ln -sf "${DOTFILES}/zshrc" "${HOME}/.zshrc"
+bash zsh/init_scripts/link.bash
