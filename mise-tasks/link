@@ -10,11 +10,13 @@ ln -sf "${DOTFILES}/config/vim/.vimrc" "${HOME}/.vimrc"
 # link mise config
 # Create config directory if it doesn't exist
 mkdir -p "${HOME}/.config/mise"
-ln -sf "${DOTFILES}/config/mise.global.toml" "${HOME}/.config/mise/config.toml"
+ln -sf "${DOTFILES}/config/mise/config.toml" "${HOME}/.config/mise/config.toml"
 
 # link ghostty config
 # Create config directory if it doesn't exist
 mkdir -p "${HOME}/.config/ghostty"
 ln -sf "${DOTFILES}/config/ghostty/config" "${HOME}/.config/ghostty/config"
 
-bash zsh/init_scripts/link.bash
+ln -sf "${DOTFILES}/config/starship.toml" "${HOME}/.config/starship.toml"
+
+ln -sf "${DOTFILES}/zsh/zshrc" "${HOME}/.zshrc"
