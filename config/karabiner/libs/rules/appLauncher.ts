@@ -8,11 +8,13 @@ const APPS = {
   Keynote: "Keynote",
   Preview: "Preview",
   Zotero: "Zotero",
+  AI: "Gemini",
 };
 
 export function launchApp() {
   return rule("Launch Apps").manipulators([
     withModifier(["command", "control"])({
+      a: toApp(APPS.AI),
       t: toApp(APPS.Terminal),
       s: toApp(APPS.Browser),
       x: toApp(APPS.Editor),
