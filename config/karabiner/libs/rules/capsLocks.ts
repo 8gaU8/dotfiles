@@ -7,6 +7,7 @@ export function capsLockToControl(): RuleBuilder {
       // ModifierParam should be "undefiend" to preserve the default parameters (just in case)
       .to("left_control", undefined, { lazy: true })
       .toIfAlone("escape")
+      .toIfAlone("japanese_eisuu")
       .toIfHeldDown("left_control")
       .description(description),
   ]);
