@@ -1,7 +1,7 @@
 import process from "node:process";
 import yargs from "yargs";
 
-export function parseProfileArgs(profile: string) {
+export function parseProfileArgs() {
   const args = yargs(process.argv.slice(2))
     .option("dryRun", {
       alias: "d",
@@ -15,8 +15,8 @@ export function parseProfileArgs(profile: string) {
     })
     .parseSync();
 
-  if (args.dryRun) profile = "--dry-run";
-  else if (args.profile) profile = args.profile;
+  if (args.dryRun) return "--dry-run";
+  else if (args.profile) return args.profile;
 
-  return profile;
+  throw new Error("Either --dry-run or --profile must be specified");
 }
