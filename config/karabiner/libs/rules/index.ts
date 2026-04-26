@@ -1,6 +1,6 @@
 import { launchApp } from "./appLauncher";
 import { magicArrows, viArrowsWithFn } from "./arrows";
-import { capsLockToControl } from "./capsLocks";
+import { capsLockToControl } from "./capsLock";
 import { emojiLayer } from "./emoji";
 import { nbToFn } from "./functions";
 import { allDeviceRules } from "./keyboardsSpecific";
