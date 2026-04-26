@@ -9,7 +9,6 @@ call plug#begin()
 " List your plugins here
 Plug 'tpope/vim-sensible'
 Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'tidalcycles/vim-tidal'
 
 " LSP
 Plug 'prabirshrestha/vim-lsp'
@@ -20,6 +19,12 @@ call plug#end()
 colorscheme dracula
 
 " ---------------------------
+" For 'redrawtime' exceeded, syntax highlighting disabled
+" Cite: https://qiita.com/kazuyaseo/items/4a5a41ef0cb824bc94fd
+
+set re=0
+
+
 " setting
 "文字コードをUFT-8に設定
 set fenc=utf-8
