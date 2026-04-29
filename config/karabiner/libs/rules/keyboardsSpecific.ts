@@ -78,7 +78,7 @@ const dangoKeyboard = () => {
       withDangoKeyboard([
         escapeToGrave,
 
-        map("left_command").to("left_option"),
+        map("left_command", "optionalAny").to("left_option"),
         map("left_control").to("fn"),
 
         map("application", "optionalAny").to("right_option"),
