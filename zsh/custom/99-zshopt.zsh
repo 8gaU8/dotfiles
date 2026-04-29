@@ -17,3 +17,6 @@ setopt promptsubst
 setopt pushdignoredups
 setopt pushdminus
 setopt sharehistory
+
+# ignore case for completions
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
