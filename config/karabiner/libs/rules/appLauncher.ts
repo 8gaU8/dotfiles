@@ -9,6 +9,7 @@ const APPS = {
   Preview: "Preview",
   Zotero: "Zotero",
   AI: "Gemini",
+  Slack: "Slack",
 };
 
 export function launchApp() {
@@ -22,6 +23,7 @@ export function launchApp() {
       k: toApp(APPS.Keynote),
       p: toApp(APPS.Preview),
       z: toApp(APPS.Zotero),
+      e: toApp(APPS.Slack),
     }),
   ]);
 }
