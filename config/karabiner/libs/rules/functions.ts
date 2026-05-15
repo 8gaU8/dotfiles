@@ -16,3 +16,25 @@ export function nbToFn(): RuleBuilder {
     map("equal_sign", "fn").to("f12"),
   ]);
 }
+
+export function fnToMediaControl(): RuleBuilder {
+  return rule("Fn → System").manipulators([
+    // メディアコントロール
+    map("a", "fn").to("play_or_pause"),
+    map("s", "fn").to("vk_consumer_previous"),
+    map("d", "fn").to("vk_consumer_next"),
+
+    // 画面明るさ
+    map("i", "fn").to("display_brightness_decrement"),
+    map("o", "fn").to("display_brightness_increment"),
+
+    // キーボードのバックライト（もしあれば）
+    map("k", "fn").to("illumination_decrement"),
+    map("l", "fn").to("illumination_increment"),
+
+    // 音量
+    map("f", "fn").to("mute"),
+    map("g", "fn").to("volume_decrement"),
+    map("h", "fn").to("volume_increment"),
+  ]);
+}
