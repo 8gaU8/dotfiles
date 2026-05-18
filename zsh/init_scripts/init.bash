@@ -22,7 +22,11 @@ function activation() {
 
     function _evalcache() {
         echo "Evaluating: $*"
-        which "$1" 
+        # exit if the command is not available
+        if ! command -v "$1" &> /dev/null; then
+            echo "Command $1 not found, skipping."
+            return
+        fi
         "$@" >> "$activation_cache_file"
     }
 
@@ -41,13 +45,14 @@ function plugins() {
         local plugin_name="${1}"
         local plugin_path="${2}"
         if [[ ! -d "$plugin_path" ]]; then
-            git clone --depth=1 "https://github.com/${plugin_name}.git" "$plugin_path"
+            # GIT_TERMINAL_PROMPT=0 でユーザー名/パスワードの入力プロンプトを無効化し、即座に失敗させます
+            GIT_TERMINAL_PROMPT=0 git clone --depth=1 "https://github.com/${plugin_name}.git" "$plugin_path" 2>/dev/null || true
         else
             # If the directory already exists, we can choose to pull the latest changes or skip
             echo "Plugin ${plugin_name} already exists at ${plugin_path}, skipping clone."
             # Uncomment the following lines to pull the latest changes instead of skipping
             # echo "Updating plugin ${plugin_name} at ${plugin_path}..."
-            # git -C "$plugin_path" pull --depth=1
+            # GIT_TERMINAL_PROMPT=0 git -C "$plugin_path" pull --depth=1 2>/dev/null || true
         fi
     }
 
@@ -56,10 +61,19 @@ function plugins() {
         local script_to_use="$2"
         local plugin_path="${plugins_download_dir}/${plugin_name}"
         clone "${plugin_name}" "${plugin_path}"
+        
+        # プラグインのスクリプトが存在しない場合はバンドル処理をスキップ
+        if [[ ! -f "${plugin_path}/${script_to_use}" ]]; then
+            echo "⚠️  Skipping source: ${plugin_path}/${script_to_use} not found."
+            return
+        fi
+
         {
-            echo "# --- Source: ${plugin_name} (${script_to_use}) ---" 
-            echo "source ${plugin_path}/${script_to_use}" 
-            echo -e "\n" 
+            echo "# --- Source: ${plugin_name} (${script_to_use}) ---"
+            echo "{ # --- try block start ---"
+            echo "source \"${plugin_path}/${script_to_use}\""
+            echo "} 2>/dev/null || true # --- catch block ---"
+            echo -e "\n"
         } >> "$plugin_bundle_file"
     }
 
@@ -68,10 +82,19 @@ function plugins() {
         local script_to_use="$2"
         local plugin_path="${plugins_download_dir}/${plugin_name}"
         clone "${plugin_name}" "${plugin_path}"
+        
+        # プラグインのスクリプトが存在しない場合はバンドル処理をスキップ (catのエラー防止)
+        if [[ ! -f "${plugin_path}/${script_to_use}" ]]; then
+            echo "⚠️  Skipping bundle: ${plugin_path}/${script_to_use} not found."
+            return
+        fi
+
         {
-            echo "# --- Source: ${plugin_name} (${script_to_use}) ---" 
-            cat "${plugin_path}/${script_to_use}" 
-            echo -e "\n" 
+            echo "# --- Source: ${plugin_name} (${script_to_use}) ---"
+            echo "{ # --- try block start ---"
+            cat "${plugin_path}/${script_to_use}"
+            echo "} 2>/dev/null || true # --- catch block ---"
+            echo -e "\n"
         } >> "$plugin_bundle_file"
     }
 
@@ -88,21 +111,30 @@ function bundle() {
     : >"${bundle_file}"
 
     for f in "${custom_dir}"/*.gen.zsh; do
-        echo "  Appending $f..."
-        {
-            echo "# --- Source: ${f} ---" 
-            cat "$f"
-            echo -e 
-        } >> "${bundle_file}"
-    done
-
-    # Concatinate scripts sequencially
-    for f in "${custom_dir}"/[0-9][0-9]-*.zsh; do
+        # globでファイルが見つからなかった場合のスキップ処理
+        [[ -e "$f" ]] || continue
+        
         echo "  Appending $f..."
         {
             echo "# --- Source: ${f} ---"
+            echo "{ # --- try block start ---"
             cat "$f"
-            echo -e
+            echo "} 2>/dev/null || true # --- catch block ---"
+            echo
+        } >> "${bundle_file}"
+    done
+
+    # Concatenate scripts sequentially
+    for f in "${custom_dir}"/[0-9][0-9]-*.zsh; do
+        [[ -e "$f" ]] || continue
+        
+        echo "  Appending $f..."
+        {
+            echo "# --- Source: ${f} ---"
+            echo "{ # --- try block start ---"
+            cat "$f"
+            echo "} 2>/dev/null || true # --- catch block ---"
+            echo
         } >> "${bundle_file}"
     done
 

@@ -1,7 +1,4 @@
 [tools]
-fzf = "latest"
-"aqua:starship" = "latest"
-bat = "latest"
 
 # Dev tools
 shellcheck = "latest"

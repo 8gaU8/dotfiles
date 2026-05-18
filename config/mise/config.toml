@@ -6,8 +6,12 @@ usage = "latest"
 uv = "latest"
 zoxide = "latest"
 eza = "latest"
-ruby = "latest"
-"gem:try-cli" = "latest"
+fzf = "latest"
+"aqua:starship" = "latest"
+bat = "latest"
+
+ruby = {version = "latest", os = "macos"}
+"gem:try-cli" = {depends = "ruby", version = "latest", os = "macos"}
 
 [settings]
 activate_aggressive = true
