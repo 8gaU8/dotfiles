@@ -18,3 +18,7 @@ description = "Run code formatters and linters"
 alias = ["f"]
 run = ["pnpm exec biome check --write"]
 
+[tasks.all]
+description = "Run all tasks"
+alias = ["a"]
+depends = ["fix", "apply-karabiner-config"]
