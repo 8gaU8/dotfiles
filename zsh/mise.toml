@@ -4,8 +4,12 @@ shellcheck = "latest"
 shfmt = "latest"
 taplo = "latest"
 
+[tasks.format]
+description = "Run code formatters"
+alias = ["f"]
+run = ["shfmt -w -- local-plugins mise-tasks", "taplo format "]
+
 [tasks.all]
 description = "Run all tasks"
 alias = ["a"]
-depends = ["clean", "link"]
-
+depends = ["format", "clean", "link"]

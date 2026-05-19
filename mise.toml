@@ -4,7 +4,6 @@ experimental_monorepo_root = true
 config_roots = ["zsh", "config/karabiner"]
 
 
-
 [tasks.all]
 description = "Run all tasks"
 alias = ["a"]
