@@ -1,5 +1,15 @@
-#! /usr/bin/env bash
+#! /usr/bin/env zsh
 #MISE description="cleaning generated files for zsh dotfiles"
 echo "Cleaning up generated files..."
 
-bash zsh/init_scripts/clean.bash
+set -o errexit
+set -o nounset
+set -o pipefail
+
+echo "Current directory: $(pwd)"
+dotfiles_dir="$(dirname $(dirname "${0}"))"
+zshdir="${dotfiles_dir}/zsh"
+
+rm -f "${zshdir}"/custom.bundle.zsh*
+
+rm -f "${HOME}"/.zshrc.zwc

@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/bin/env zsh
 #MISE description="Make symlinks for dotfiles"
 echo "Linking dotfiles..."
 
