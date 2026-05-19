@@ -16,13 +16,10 @@ function ensure_zcompiled {
 # compile zshrc itself
 ensure_zcompiled "${HOME}/.zshrc"
 
-# Custom Config Locations
-
 
 autoload -Uz compinit && compinit
 
-# BOOTSTRAP
-
+# ---- BOOTSTRAP ----
 # Activate mise
 if [ -z "${VSCODE_INJECTION}" ]; then
 	eval "$(${HOME}/.local/bin/mise activate zsh)"
@@ -34,17 +31,15 @@ fi
 eval "$(sheldon source)"
 
 
-
-# bundle
+# ---- Bundle local plugins ----
 local DOTFILES_DIR="${HOME}/dotfiles"
-local zshdir="${DOTFILES_DIR}/zsh"
-local bundle_file="${zshdir}/custom.bundle.zsh"
+local bundle_file="${DOTFILES_DIR}/zsh/custom.bundle.zsh"
 
 # Generate bundled file when it doesn't exist
 if [[ ! -f "$bundle_file" ]]; then
 
 	# Concatenate scripts sequentially
-	for f in "${zshdir}/local-plugins"/[0-9][0-9]-*.zsh; do
+	for f in "${DOTFILES_DIR}/zsh/local-plugins"/[0-9][0-9]-*.zsh; do
 		[[ -e "$f" ]] || continue
 		
 		echo "  Appending $f..."
