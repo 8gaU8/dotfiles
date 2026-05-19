@@ -12,6 +12,7 @@ bat = "latest"
 
 ruby = {version = "latest", os = "macos"}
 "gem:try-cli" = {depends = "ruby", version = "latest", os = "macos"}
+sheldon = "latest"
 
 [settings]
 activate_aggressive = true

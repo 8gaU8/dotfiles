@@ -6,10 +6,11 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-echo "Current directory: $(pwd)"
-dotfiles_dir="$(dirname $(dirname "${0}"))"
-zshdir="${dotfiles_dir}/zsh"
+DOTFILES="${HOME}/dotfiles"
+zshdir="${DOTFILES}/zsh"
 
-rm -f "${zshdir}"/custom.bundle.zsh*
+rm -f "${DOTFILES}"/zsh/custom.bundle.zsh*
 
 rm -f "${HOME}"/.zshrc.zwc
+
+rm -f "${HOME}"/.cache/zsh-activation_cache.zsh

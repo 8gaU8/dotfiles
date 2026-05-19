@@ -17,19 +17,48 @@ function ensure_zcompiled {
 ensure_zcompiled "${HOME}/.zshrc"
 
 # Custom Config Locations
-export DOTFILES_DIR="${HOME}/dotfiles"
-export BASE_CONFIG_DIR="${DOTFILES_DIR}/config"
 
-# ====== Bundle custom/*.zsh scripts =========
-# Configure Bundle Path
-bundle_file="$DOTFILES_DIR/zsh/custom.bundle.zsh"
 
 autoload -Uz compinit && compinit
 
-# 4. Load the bundled file
-cd "$DOTFILES_DIR" && \
-    source "$bundle_file" && \
-    cd - > /dev/null
+# BOOTSTRAP
 
+# Activate mise
+if [ -z "${VSCODE_INJECTION}" ]; then
+	eval "$(${HOME}/.local/bin/mise activate zsh)"
+else
+	eval "$(${HOME}/.local/bin/mise activate zsh --shims)"
+fi
+
+# sheldon init
+eval "$(sheldon source)"
+
+
+
+# bundle
+local DOTFILES_DIR="${HOME}/dotfiles"
+local zshdir="${DOTFILES_DIR}/zsh"
+local bundle_file="${zshdir}/custom.bundle.zsh"
+
+# Generate bundled file when it doesn't exist
+if [[ ! -f "$bundle_file" ]]; then
+
+	# Concatenate scripts sequentially
+	for f in "${zshdir}/local-plugins"/[0-9][0-9]-*.zsh; do
+		[[ -e "$f" ]] || continue
+		
+		echo "  Appending $f..."
+		{
+			echo "# --- Source: ${f} ---"
+			echo "{ # --- try block start ---"
+			cat "$f"
+			echo "} 2>/dev/null || true # --- catch block ---"
+			echo
+		} >> "${bundle_file}"
+	done
+
+	echo "✅ Bundle created: ${bundle_file}"
+fi
+source "$bundle_file"
 
 unfunction source
