@@ -1,1 +1,1 @@
-path+=( "${HOME}/.antigravity/antigravity/bin")
+path+=("${HOME}/.antigravity/antigravity/bin")

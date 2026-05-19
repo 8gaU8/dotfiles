@@ -5,7 +5,7 @@ on_demand_completion() {
 	local comp_cmd_name="${completion_command%% *}"
 
 	# exit if the command is not available
-	if ! command -v "$comp_cmd_name" &> /dev/null; then
+	if ! command -v "$comp_cmd_name" &>/dev/null; then
 		return
 	fi
 
