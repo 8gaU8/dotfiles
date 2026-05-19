@@ -6,12 +6,10 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-pwd
-
 DOTFILES="${HOME}/dotfiles"
 zshdir="${DOTFILES}/zsh"
 
-rm -f "${DOTFILES}"/zsh/custom.bundle.zsh*
+rm -f "${DOTFILES}/zsh/custom.bundle.zsh" "${DOTFILES}/zsh/local.bundle.zsh.zwc"
 
 rm -f "${HOME}"/.zshrc.zwc
 
