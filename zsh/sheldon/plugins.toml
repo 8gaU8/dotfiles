@@ -41,5 +41,3 @@ apply = ["source"]
 [plugins.you-should-use]
 github = "MichaelAquilina/zsh-you-should-use"
 use = ["you-should-use.plugin.zsh"]
-
-

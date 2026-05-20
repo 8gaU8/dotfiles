@@ -4,7 +4,6 @@ echo "Linking dotfiles..."
 
 DOTFILES="${HOME}/dotfiles"
 
-
 ln -sf "${DOTFILES}/zsh/zshrc" "${HOME}/.zshrc"
 
 mkdir -p "${HOME}/.config/mise"
