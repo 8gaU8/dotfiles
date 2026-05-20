@@ -17,7 +17,7 @@ function ensure_zcompiled {
 ensure_zcompiled "${HOME}/.zshrc"
 
 
-autoload -Uz compinit && compinit
+autoload -Uz compinit && compinit -C
 
 # ---- BOOTSTRAP ----
 # Activate mise
