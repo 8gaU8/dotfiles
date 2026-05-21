@@ -1,15 +1,20 @@
 # ========= custom hook to auto-compile zsh scripts ============
 # ref: https://zenn.dev/fuzmare/articles/zsh-source-zcompile-all
 function source {
-	ensure_zcompiled $1
-	builtin source $1
+	# attempt to compile the first argument if it's an existing file
+	if [[ -f "$1" ]]; then
+		ensure_zcompiled "$1"
+	fi
+	
+	# "$@" を使って、2つ目以降の引数も含めて全てbuiltinに渡す
+	builtin source "$@"
 }
 
 function ensure_zcompiled {
-	local compiled="$1.zwc"
-	if [[ ! -r "$compiled" || "$1" -nt "$compiled" ]]; then
-		echo "Compiling $1"
-		zcompile $1
+	local target="$1"
+	local compiled="${target}.zwc"
+	if [[ ! -r "$compiled" || "$target" -nt "$compiled" ]]; then
+		zcompile "$target"
 	fi
 }
 
