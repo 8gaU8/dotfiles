@@ -1,0 +1,1 @@
+path+=("${HOME}/.antigravity/antigravity/bin")

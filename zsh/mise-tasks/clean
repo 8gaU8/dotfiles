@@ -1,0 +1,16 @@
+#! /usr/bin/env zsh
+#MISE description="cleaning generated files for zsh dotfiles"
+echo "Cleaning up generated files..."
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+DOTFILES="${HOME}/dotfiles"
+zshdir="${DOTFILES}/zsh"
+
+rm -f "${DOTFILES}/zsh/custom.bundle.zsh" "${DOTFILES}/zsh/local.bundle.zsh.zwc"
+
+rm -f "${HOME}"/.zshrc.zwc
+
+rm -f "${HOME}"/.cache/zsh-activation_cache.zsh

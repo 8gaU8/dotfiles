@@ -1,6 +1,10 @@
-[tools]
+# monorepo setting
+experimental_monorepo_root = true
+[monorepo]
+config_roots = ["zsh", "config/karabiner"]
 
-# Dev tools
-shellcheck = "latest"
-shfmt = "latest"
-taplo = "latest"
+
+[tasks.all]
+description = "Run all tasks"
+alias = ["a"]
+depends = ["//zsh:all", "//config/karabiner:all"]

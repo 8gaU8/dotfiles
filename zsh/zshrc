@@ -1,35 +1,71 @@
 # ========= custom hook to auto-compile zsh scripts ============
 # ref: https://zenn.dev/fuzmare/articles/zsh-source-zcompile-all
 function source {
-	ensure_zcompiled $1
-	builtin source $1
+	# attempt to compile the first argument if it's an existing file
+	if [[ -f "$1" ]]; then
+		ensure_zcompiled "$1"
+	fi
+	
+	# "$@" を使って、2つ目以降の引数も含めて全てbuiltinに渡す
+	builtin source "$@"
 }
 
 function ensure_zcompiled {
-	local compiled="$1.zwc"
-	if [[ ! -r "$compiled" || "$1" -nt "$compiled" ]]; then
-		echo "Compiling $1"
-		zcompile $1
+	local target="$1"
+	local compiled="${target}.zwc"
+	if [[ ! -r "$compiled" || "$target" -nt "$compiled" ]]; then
+		zcompile "$target"
 	fi
 }
 
 # compile zshrc itself
 ensure_zcompiled "${HOME}/.zshrc"
 
-# Custom Config Locations
-export DOTFILES_DIR="${HOME}/dotfiles"
-export BASE_CONFIG_DIR="${DOTFILES_DIR}/config"
 
-# ====== Bundle custom/*.zsh scripts =========
-# Configure Bundle Path
-bundle_file="$DOTFILES_DIR/zsh/custom.bundle.zsh"
+autoload -Uz compinit && compinit -C
 
-autoload -Uz compinit && compinit
+# ---- BOOTSTRAP ----
+# Activate mise
+if [ -z "${VSCODE_INJECTION}" ]; then
+	eval "$(${HOME}/.local/bin/mise activate zsh)"
+else
+	eval "$(${HOME}/.local/bin/mise activate zsh --shims)"
+fi
 
-# 4. Load the bundled file
-cd "$DOTFILES_DIR" && \
-    source "$bundle_file" && \
-    cd - > /dev/null
+# sheldon init
+eval "$(sheldon source)"
 
+
+# ---- Bundle local plugins ----
+local DOTFILES_DIR="${HOME}/dotfiles"
+local bundle_file="${DOTFILES_DIR}/zsh/custom.bundle.zsh"
+local plugins_dir="${DOTFILES_DIR}/zsh/local-plugins"
+
+# 1. zshのグロブ修飾子を使って「最も新しいファイル」を1つだけ取得
+# N  : ファイルがない場合にエラーにせず空文字列を返す (NULL_GLOB)
+# .  : 通常のファイルのみに限定
+# om : 更新日時(mtime)の新しい順(o)にソート
+# [1]: 最初の1つだけを取得
+local newest_plugin=(${plugins_dir}/[0-9][0-9]-*.zsh(N.om[1]))
+
+
+# 2. バンドルが存在しないか、最新のプラグインがバンドルより新しい場合のみビルド
+if [[ ! -f "$bundle_file" ]] || [[ -n "$newest_plugin" && "$newest_plugin" -nt "$bundle_file" ]]; then
+	echo "${newest_plugin} has been updated since last bundle. Rebuilding..."
+	
+	:> "${bundle_file}" # 初期化
+
+	# ここでも(N.)をつけて安全に展開
+	for f in "${plugins_dir}"/[0-9][0-9]-*.zsh(N.); do
+		{
+			echo "# --- Source: ${f} ---"
+			cat "$f"
+			echo
+		} >> "${bundle_file}"
+	done
+
+	echo "✅ Bundle created: ${bundle_file}"
+fi
+source "$bundle_file"
 
 unfunction source
