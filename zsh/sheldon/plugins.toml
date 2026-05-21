@@ -21,6 +21,13 @@ show_file = """
     {{ hooks?.post | nl }}
 """
 
+add_fpath = """
+    {% for file in files %}
+        fpath=( "{{ file }}" $fpath )
+    {% endfor %}
+"""
+
+
 [plugins]
 
 # migrate from zsh/plugins-list.txt
@@ -41,3 +48,16 @@ apply = ["source"]
 [plugins.you-should-use]
 github = "MichaelAquilina/zsh-you-should-use"
 use = ["you-should-use.plugin.zsh"]
+
+[plugins.zsh-abbr]
+github = "olets/zsh-abbr"
+
+[plugins.eza-completion]
+github = "eza-community/eza"
+use = ["completions/zsh"]
+apply = ['add_fpath']
+
+[plugins.zsh-completions]
+github = "zsh-users/zsh-completions"
+use = ["src"]
+apply = ['add_fpath']
