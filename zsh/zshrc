@@ -39,20 +39,27 @@ eval "$(sheldon source)"
 # ---- Bundle local plugins ----
 local DOTFILES_DIR="${HOME}/dotfiles"
 local bundle_file="${DOTFILES_DIR}/zsh/custom.bundle.zsh"
+local plugins_dir="${DOTFILES_DIR}/zsh/local-plugins"
 
-# Generate bundled file when it doesn't exist
-if [[ ! -f "$bundle_file" ]]; then
+# 1. zshのグロブ修飾子を使って「最も新しいファイル」を1つだけ取得
+# N  : ファイルがない場合にエラーにせず空文字列を返す (NULL_GLOB)
+# .  : 通常のファイルのみに限定
+# om : 更新日時(mtime)の新しい順(o)にソート
+# [1]: 最初の1つだけを取得
+local newest_plugin=(${plugins_dir}/[0-9][0-9]-*.zsh(N.om[1]))
 
-	# Concatenate scripts sequentially
-	for f in "${DOTFILES_DIR}/zsh/local-plugins"/[0-9][0-9]-*.zsh; do
-		[[ -e "$f" ]] || continue
-		
-		echo "  Appending $f..."
+
+# 2. バンドルが存在しないか、最新のプラグインがバンドルより新しい場合のみビルド
+if [[ ! -f "$bundle_file" ]] || [[ -n "$newest_plugin" && "$newest_plugin" -nt "$bundle_file" ]]; then
+	echo "${newest_plugin} has been updated since last bundle. Rebuilding..."
+	
+	:> "${bundle_file}" # 初期化
+
+	# ここでも(N.)をつけて安全に展開
+	for f in "${plugins_dir}"/[0-9][0-9]-*.zsh(N.); do
 		{
 			echo "# --- Source: ${f} ---"
-			echo "{ # --- try block start ---"
 			cat "$f"
-			echo "} 2>/dev/null || true # --- catch block ---"
 			echo
 		} >> "${bundle_file}"
 	done
