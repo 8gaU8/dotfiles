@@ -1,6 +1,6 @@
 import {
   type BasicManipulatorBuilder,
-  type ConditionBuilder,
+  type DeviceIdentifier,
   type FromKeyParam,
   ifDevice,
   map,
@@ -9,28 +9,17 @@ import {
 } from "karabiner.ts";
 
 // AJAZZ
-const isPurpleKeyboard = (): ConditionBuilder => {
-  return ifDevice({ vendor_id: 6700, product_id: 39689 });
-};
+const PURPLE_KEYBOARD_DEVICE = { vendor_id: 6700, product_id: 39689 };
 // SEMITEK
-const isDangoKeyboard = (): ConditionBuilder => {
-  return ifDevice({ vendor_id: 7847, product_id: 2311 });
-};
+const DANGO_KEYBOARD_DEVICE = { vendor_id: 7847, product_id: 2311 };
+// MacBook Pro
+const INTERNAL_KEYBOARD_DEVICE = { is_built_in_keyboard: true };
 
-const isInternalKeyboard = (): ConditionBuilder => {
-  return ifDevice({ is_built_in_keyboard: true });
-};
-
-const withPurpleKeyboard = (manipulators: BasicManipulatorBuilder[]) => {
-  return withCondition(isPurpleKeyboard())(manipulators);
-};
-
-const withDangoKeyboard = (manipulators: BasicManipulatorBuilder[]) => {
-  return withCondition(isDangoKeyboard())(manipulators);
-};
-
-const withInternalKeyboard = (manipulators: BasicManipulatorBuilder[]) => {
-  return withCondition(isInternalKeyboard())(manipulators);
+const withKeyboard = (
+  keyboardSpec: DeviceIdentifier,
+  manipulators: BasicManipulatorBuilder[],
+) => {
+  return withCondition(ifDevice(keyboardSpec))(manipulators);
 };
 
 const escapeToGrave = map("escape", "optionalAny")
@@ -53,13 +42,16 @@ const modToIMC = (leftMod: FromKeyParam, rightMod: FromKeyParam) => {
 
 const internalKeyboardRule = () => {
   return rule("Device Specific Rule for Internal Keyboard").manipulators([
-    withInternalKeyboard(modToIMC("left_command", "right_command")),
+    withKeyboard(
+      INTERNAL_KEYBOARD_DEVICE,
+      modToIMC("left_command", "right_command"),
+    ),
   ]);
 };
 
 const thePurpleKeyboard = () => {
   return rule("Device Specific Rule for The Purple Keyboard").manipulators([
-    withPurpleKeyboard([
+    withKeyboard(PURPLE_KEYBOARD_DEVICE, [
       escapeToGrave,
 
       map("left_control").to("fn"),
@@ -75,7 +67,7 @@ const thePurpleKeyboard = () => {
 const dangoKeyboard = () => {
   return rule("Device Specific Rule for Dango Keyboard") // 2 rules
     .manipulators([
-      withDangoKeyboard([
+      withKeyboard(DANGO_KEYBOARD_DEVICE, [
         escapeToGrave,
 
         map("left_command", "optionalAny").to("left_option"),
