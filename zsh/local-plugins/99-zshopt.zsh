@@ -24,7 +24,6 @@ setopt always_last_prompt # 補完でプロンプト位置を保持
 setopt auto_list          # 曖昧補完
 setopt auto_menu          # 補完キー（Tab）連打で補完を順に表示
 setopt auto_param_keys    # カッコなどを補完
-setopt correct_all        # typoを検出
 setopt extended_glob      # globを使用
 setopt list_types         # 候補にファイルの種別を表示
 
