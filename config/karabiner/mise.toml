@@ -1,5 +1,4 @@
 [tools]
-gemini-cli = "latest"
 node = "24"
 pnpm = "latest"
 
