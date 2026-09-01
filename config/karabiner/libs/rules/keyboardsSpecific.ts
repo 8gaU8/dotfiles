@@ -27,13 +27,21 @@ const escapeToGrave = map("escape", "optionalAny")
   .to("grave_accent_and_tilde")
   .description("Escape to Grave Accent/Tilde");
 
-const modToIMC = (leftMod: FromKeyParam, rightMod: FromKeyParam) => {
+/**
+ *
+ * @param leftMod - The left modifier key to be mapped to Command and IME(EISUU) keys.
+ * @param rightMod - The right modifier key to be mapped to Command and IME(KANA) keys.
+ * @returns A list of manipulators
+ * @example `modToCmdIMC("left_command", "right_command")` will map left_command to left_command and EISUU when pressed alone, and right_command to right_command and KANA when pressed alone.
+ * @example `modToCmdIMC("left_option", "right_option")` will map left_option to left_command and EISUU when pressed alone, and right_option to right_command and KANA when pressed alone.
+ */
+const modToCmdIMC = (leftMod: FromKeyParam, rightMod: FromKeyParam) => {
   return [
-    map(leftMod)
+    map(leftMod, "optionalAny")
       .to("left_command")
       .toIfAlone("japanese_eisuu")
       .description("Left Command to EISUU when pressed alone"),
-    map(rightMod)
+    map(rightMod, "optionalAny")
       .to("right_command")
       .toIfAlone("japanese_kana")
       .description("Right Command to KANA when pressed alone"),
@@ -44,7 +52,7 @@ const internalKeyboardRule = () => {
   return rule("Device Specific Rule for Internal Keyboard").manipulators([
     withKeyboard(
       INTERNAL_KEYBOARD_DEVICE,
-      modToIMC("left_command", "right_command"),
+      modToCmdIMC("left_command", "right_command"),
     ),
   ]);
 };
@@ -54,12 +62,12 @@ const thePurpleKeyboard = () => {
     withKeyboard(PURPLE_KEYBOARD_DEVICE, [
       escapeToGrave,
 
-      map("left_control").to("fn"),
-      map("application").to("right_option"),
-      map("right_control").to("right_option"),
-
       // IME
-      ...modToIMC("left_command", "right_command"),
+      ...modToCmdIMC("left_option", "right_option"),
+
+      map("left_control", "optionalAny").to("fn"),
+      map("left_command", "optionalAny").to("left_option"),
+      map("right_control", "optionalAny").to("right_option"),
     ]),
   ]);
 };
@@ -76,7 +84,7 @@ const dangoKeyboard = () => {
         map("application", "optionalAny").to("right_option"),
 
         // IME
-        ...modToIMC("left_option", "right_option"),
+        ...modToCmdIMC("left_option", "right_option"),
       ]),
     ]);
 };
