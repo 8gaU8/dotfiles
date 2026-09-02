@@ -8,7 +8,7 @@ const APPS = {
   Keynote: "Keynote",
   Preview: "Preview",
   Zotero: "Zotero",
-  AI: "Gemini",
+  AI: "Claude",
   Slack: "Slack",
 };
 
