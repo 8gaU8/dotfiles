@@ -2,7 +2,7 @@ import { rule, toApp, withModifier } from "karabiner.ts";
 
 const APPS = {
   Terminal: "Ghostty",
-  Browser: "Arc",
+  Browser: "Dia",
   Editor: "Visual Studio Code",
   Note: "Notion",
   Keynote: "Keynote",
