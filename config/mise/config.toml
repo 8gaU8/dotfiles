@@ -1,9 +1,7 @@
 [tools]
 gh = "latest"
 lazyssh = "latest"
-pnpm = "latest"
 usage = "latest"
-uv = "latest"
 zoxide = "latest"
 eza = "latest"
 fzf = "latest"
