@@ -7,7 +7,7 @@ DOTFILES="${HOME}/dotfiles"
 ln -sf "${DOTFILES}/zsh/zshrc" "${HOME}/.zshrc"
 
 mkdir -p "${HOME}/.config/mise"
-ln -sf "${DOTFILES}/config/mise/config.toml" "${HOME}/.config/mise/config.toml"
+ln -sf "${DOTFILES}/config/mise/config.toml" "${HOME}/.config/mise/config.local.toml"
 
 mkdir -p "${HOME}/.config/sheldon"
 ln -sf "${DOTFILES}/zsh/sheldon/plugins.toml" "${HOME}/.config/sheldon/plugins.toml"
