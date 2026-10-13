@@ -6,4 +6,5 @@ bold-is-bright = true
 font-family = Cartograph CF, Hack Nerd Font Mono
 shell-integration = zsh
 theme = Catppuccin Macchiato
+macos-icon = holographic
 
